@@ -1,0 +1,10 @@
+.responsive-div {
+    display: none;
+  }
+  
+  /* Show on small and medium screens */
+  @media (min-width: 768px)  {
+    .responsive-div {
+      display: block;
+    }
+  }
