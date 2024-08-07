@@ -1,28 +1,27 @@
+const VITE_API_BASE_URL2 = import.meta.env.VITE_API_BASE_URL2;
+
 const fetchAdmin = async ({ formValues }) => {
-  const url = 'https://jsonplaceholder.typicode.com/users/1'; // Cambia esto por la URL de tu API
-  const data = {
-    username: formValues.username,
+  const url = `${VITE_API_BASE_URL2}/adminRoute/adminLogin`; // Cambia esto por la URL de tu API
+  const adminData = {
+    email: formValues.email,
     password: formValues.password,
   };
 
+  
   try {
     const response = await fetch(url, {
-      //method: 'POST',
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      //body: JSON.stringify(data),
+      body: JSON.stringify(adminData),
     });
+    const data = await response.json();
 
-    if (response.ok) {
-      const result = await response.json();
-      //console.log('Login successful:', result);
-      return { success: true, data: result }; // Devuelve el resultado en caso de éxito
+    if (data.token) {
+      return { success: data.ok, token: data.token }; // Devuelve el resultado en caso de éxito
     } else {
-      const errorData = await response.json();
-      //console.log('Login failed:', errorData);
-      return { success: false, ...errorData }; // Devuelve un objeto de error
+      return { success: false, ...data }; // Devuelve un objeto de error
     }
   } catch (error) {
     //console.error('Error occurred during login:', error);

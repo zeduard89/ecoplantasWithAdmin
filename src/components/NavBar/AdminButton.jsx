@@ -1,20 +1,25 @@
 import React, { useRef,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import admin from '../Utils/Logos/admin.png';
+import adminPng from '../Utils/Logos/admin.png';
 import validateFormAdmin from './validateFormAdmin';
 import fetchAdmin from '../api/fetchAdmin'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { adminToken } from '../../redux/adminSlice';
+
 
 const Admin = ({ onScroll }) => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const adminInfo = useSelector((state) => state.admin);
+
   
   const form = useRef();
   const [sent, setSent] = useState(null);
   const [errors, setErrors] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formValues, setFormValues ] = useState({
-    username:'',
+    email:'',
     password:''
   })
 
@@ -33,18 +38,19 @@ const Admin = ({ onScroll }) => {
     //Logica
     try {
       const response = await fetchAdmin({ formValues });
-      
       if (response.success) {
+        dispatch(adminToken(response.token));
         setSent(true);
         setIsModalOpen(false);
         form.current.reset();
         setFormValues({
-          username: '',
+          email: '',
           password: '',
         });
         setErrors({});
-        // Navegar o realizar otras acciones después del login exitoso
-        //navigate('/dashboard'); // Ejemplo de redirección
+        navigate('/admin');
+        onScroll();
+
       } else {
         setErrors({ general: response.error || 'Login failed..' });
       }
@@ -55,7 +61,7 @@ const Admin = ({ onScroll }) => {
 
     form.current.reset();
     setFormValues({
-      username: '',
+      email: '',
       password: '',
 
     });
@@ -63,6 +69,12 @@ const Admin = ({ onScroll }) => {
   }
 
   const handleButtonClick = () => {
+    if(adminInfo.token){
+      navigate('/admin');
+      onScroll();
+      setIsModalOpen(false)
+      return
+    }
     setIsModalOpen(true);
   };
 
@@ -76,7 +88,7 @@ const Admin = ({ onScroll }) => {
         className='w-10 h-8 mr-5 relative btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:hover:text-blue-700'
         onClick={handleButtonClick}
       >
-        <img src={admin} alt="adminButton" className='h-[2rem] ml-4 mt-3' />
+        <img src={adminPng} alt="adminButton" className='h-[2rem] ml-4 mt-3' />
       </button>
 
       {isModalOpen && (
@@ -87,15 +99,15 @@ const Admin = ({ onScroll }) => {
             <h2 className='text-center font-bold text-black text-2xl mb-4'>Admin Login</h2>
             <form ref={form} onSubmit={validateAdmin}>
               <div className='mb-4'>
-                <label className='block text-gray-700 text-sm font-bold mb-2'>Usuario</label>
+                <label className='block text-gray-700 text-sm font-bold mb-2'>Email</label>
                 <input 
-                  type="text" 
+                  type="email" 
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' 
-                  name="username"
-                  value={formValues.username}
+                  name="email"
+                  value={formValues.email}
                   onChange={handleChange}
                 />
-                {errors.username && <p className="left-8 text-red-600 text-sm">{errors.username}</p>}
+                {errors.email && <p className="left-8 text-red-600 text-sm">{errors.email}</p>}
 
               </div>
               <div className='mb-4'>
