@@ -37,18 +37,18 @@ export const catalogoSlice = createSlice({
             }
         },
         incrementMaceterosL: (state, action) => {
-            const { title } = action.payload;
-            if (title !== undefined && title.includes('20')) {
+            const { base } = action.payload;
+            if (base !== undefined && base.includes('20')) {
                 state.maceteros20 += 1;
-            }else if(title !== undefined && title.includes('30')){
+            }else if(base !== undefined && base.includes('30')){
                 state.maceteros30 += 1;
             }
         },
         decrementMaceterosL: (state, action) => {
-            const { title } = action.payload;
-            if (title !== undefined && title.includes('20') && state.maceteros20 > 0) {
+            const { base } = action.payload;
+            if (base !== undefined && base.includes('20') && state.maceteros20 > 0) {
                 state.maceteros20 -= 1;
-            }else if(title !== undefined && title.includes('30') && state.maceteros30 > 0){
+            }else if(base !== undefined && base.includes('30') && state.maceteros30 > 0){
                 state.maceteros30 -= 1;
             }
         },

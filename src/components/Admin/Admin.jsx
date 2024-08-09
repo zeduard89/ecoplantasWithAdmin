@@ -33,7 +33,7 @@ const Admin = () => {
   //   // Función para obtener los datos filtrados desde el backend
   //   const fetchFilteredData = async () => {
   //     try {
-    //const response = await fetchAdmin({ searchValues });
+    //const response = await fetchCatalogo({ searchValues });
     //       dispatch({ type: 'UPDATE_CATALOGO', payload: response.data });
   //     } catch (error) {
   //       console.error('Error al obtener los datos filtrados:', error);
@@ -128,8 +128,8 @@ const Admin = () => {
               <option className='text-center' value=""   disabled>Selecciona...</option>
                 <option className='text-center' value="asc">Más Reciente Primero</option>
                 <option className='text-center' value="des">Más Antiguo Primero</option>
-                <option className='text-center' value="lastmonth">Último Mes</option>
-                <option className='text-center' value="lastyear">Último Año</option>
+                <option className='text-center' value="lastMonth">Último Mes</option>
+                <option className='text-center' value="lastYear">Último Año</option>
             </select>
           </div>
         </div>

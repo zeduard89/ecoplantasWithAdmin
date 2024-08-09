@@ -8,20 +8,21 @@ import medRec from '../Utils/imges/macetas/medidasRectangulares.jpg';
 
 //Update catalogo
 import { useDispatch } from "react-redux";
-import obtenerDatosPosts from '../../redux/wordPressApi'
+import fetchCatalogo from '../api/fetchCatalogo';
 import { addCatalogo, reset } from '../../redux/catalogoSlice';
 
 const Catalogo = () => {
   //get catalogo from  wordpress y update redux
   const dispatch = useDispatch();
   const catalogo = useSelector((state) => state.catalogo);
+  const adminData = useSelector((state)=> state.admin)
   const [selectedImage, setSelectedImage] = useState(null);
 
 
 //----------------------Carga de imagenes--------------------------------
   const fetchPosts = useCallback(async () => {
     try {
-      const datosPosts = await obtenerDatosPosts();
+      const datosPosts = await fetchCatalogo(adminData.token);
       dispatch(addCatalogo(datosPosts));
     } catch (err) {
       console.log("Error", err);
@@ -40,7 +41,7 @@ const Catalogo = () => {
 
   const fetchPostsRefresh = useCallback(async () => {
     try {
-      const datosPosts = await obtenerDatosPosts();
+      const datosPosts = await fetchCatalogo(adminData.token);
       dispatch(reset())
       dispatch(addCatalogo(datosPosts));
     } catch (err) {
@@ -52,10 +53,10 @@ const Catalogo = () => {
 
   //Filtro los maceteros 20x20 y 20x30
   const maceteros20 = catalogo.maceteros.filter(macetero => {
-    return macetero.title.includes('20');
+    return macetero.base.includes('20');
   });
   const maceteros30 = catalogo.maceteros.filter(macetero => {
-    return macetero.title.includes('30');
+    return macetero.base.includes('30');
   });
 
 

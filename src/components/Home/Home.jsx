@@ -1,9 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 //Update catalogo
-import { useDispatch } from "react-redux";
-import obtenerDatosPosts from '../../redux/wordPressApi'
+import { useDispatch ,useSelector } from "react-redux";
+import fetchCatalogo from '../api/fetchCatalogo';
 import { addCatalogo } from '../../redux/catalogoSlice';
-import { useSelector } from 'react-redux';
 
 //Components
 import Carrousel from './Carrousel';
@@ -17,6 +16,8 @@ import imagesCarrousel from '../Utils/imges/carrousel/carrouselLoader'
 const Home = () => {
 
   const catalogo = useSelector((state) => state.catalogo);
+  console.log(catalogo)
+  const adminData = useSelector((state)=> state.admin)
   //get catalogo from  wordpress y update redux
   const dispatch = useDispatch();
 
@@ -24,7 +25,7 @@ const Home = () => {
 
   const fetchPosts = useCallback(async () => {
     try {
-      const datosPosts = await obtenerDatosPosts();
+      const datosPosts = await fetchCatalogo(adminData.token);
       dispatch(addCatalogo(datosPosts));
     } catch (err) {
       console.log("Error", err);

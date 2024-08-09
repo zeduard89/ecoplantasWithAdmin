@@ -17,8 +17,8 @@ const FilterMenu = ({ menuRef, isMenuOpen, searchValues, handleChange }) => {
         <option className='text-center  ' value=""   disabled>Selecciona...</option>
           <option className='text-center' value="asc">Reciente</option>
           <option className='text-center' value="des">Antiguo</option>
-          <option className='text-center' value="lastmonth">Último Mes</option>
-          <option className='text-center' value="lastyear">Último Año</option>
+          <option className='text-center' value="lastMonth">Último Mes</option>
+          <option className='text-center' value="lastYear">Último Año</option>
       </select> 
       <label className='mt-5'>
         <input type="checkbox" name="plantas" value="opcion1" className='mx-2' onChange={handleChange}/> 

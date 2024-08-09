@@ -2,7 +2,7 @@ import React  from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { increment, decrement, reset } from '../../redux/catalogoSlice';
 
-const CardPlantas = ({ id, title, content, imgUrl, category }) => {
+const CardPlantas = ({ id, title, description, imageUrl, category }) => {
   const dispatch = useDispatch();
 
   //const formattedTitle = title.toLowerCase().trim().replace(/\.$/, '').replace(/ /g, "");
@@ -18,7 +18,7 @@ const CardPlantas = ({ id, title, content, imgUrl, category }) => {
     dispatch(decrement({ title, category }));
   };
 
-  if (!imgUrl) {
+  if (!imageUrl) {
     console.error('Image is undefined or null');
     return null;
   }
@@ -28,7 +28,7 @@ const CardPlantas = ({ id, title, content, imgUrl, category }) => {
       <div className='absolute top-10 right-10 bg-white text-black border-2 border-gray-500 w-7 h-7 rounded flex items-center justify-center'>
         {element.cuantity}
       </div>
-      <img src={imgUrl} alt='Imagen de la tarjeta' className='rounded-t-md w-full h-[15rem] object-cover' />
+      <img src={imageUrl} alt='Imagen de la tarjeta' className='rounded-t-md w-full h-[15rem] object-cover' />
       <button 
         className='absolute bottom-[6.7rem] left-9 w-6 h-6 rounded text-4xl  text-white'
         onClick={handleIncrement}
@@ -43,12 +43,12 @@ const CardPlantas = ({ id, title, content, imgUrl, category }) => {
       >
         -
       </button>
-      <h1 className='h-[2.5rem] text-white rounded-b-md flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
+      <h1 className='h-[2.5rem] text-white flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
         {title}
       </h1>
-      {/* <h4 className='h-[30%] bg-green-700/20 p-2 rounded-b-md text-[0.79rem] md:text-sm lg:text-sm overflow-hidden text-ellipsis'>
-        {content}
-      </h4> */}
+      <h4 className='h-[30%] bg-green-700/20 p-2 rounded-b-md text-[0.79rem] md:text-sm lg:text-sm overflow-hidden text-ellipsis'>
+        {description}
+      </h4>
     </div>
   );
 };
