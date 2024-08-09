@@ -1,6 +1,6 @@
 const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const fetchCatalogo = async (token) => {
+const fetchCatalogo = async () => {
   
   const url = `${VITE_API_BASE_URL}/filterRoute/getAll`; 
 
@@ -9,7 +9,7 @@ const fetchCatalogo = async (token) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        
       },
     });
     const data = await response.json();

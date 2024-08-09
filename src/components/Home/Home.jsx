@@ -16,16 +16,13 @@ import imagesCarrousel from '../Utils/imges/carrousel/carrouselLoader'
 const Home = () => {
 
   const catalogo = useSelector((state) => state.catalogo);
-  console.log(catalogo)
-  const adminData = useSelector((state)=> state.admin)
-  //get catalogo from  wordpress y update redux
   const dispatch = useDispatch();
 
 
 
   const fetchPosts = useCallback(async () => {
     try {
-      const datosPosts = await fetchCatalogo(adminData.token);
+      const datosPosts = await fetchCatalogo();
       dispatch(addCatalogo(datosPosts));
     } catch (err) {
       console.log("Error", err);

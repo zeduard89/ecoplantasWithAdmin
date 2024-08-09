@@ -15,14 +15,13 @@ const Catalogo = () => {
   //get catalogo from  wordpress y update redux
   const dispatch = useDispatch();
   const catalogo = useSelector((state) => state.catalogo);
-  const adminData = useSelector((state)=> state.admin)
   const [selectedImage, setSelectedImage] = useState(null);
 
 
 //----------------------Carga de imagenes--------------------------------
   const fetchPosts = useCallback(async () => {
     try {
-      const datosPosts = await fetchCatalogo(adminData.token);
+      const datosPosts = await fetchCatalogo();
       dispatch(addCatalogo(datosPosts));
     } catch (err) {
       console.log("Error", err);
@@ -41,7 +40,7 @@ const Catalogo = () => {
 
   const fetchPostsRefresh = useCallback(async () => {
     try {
-      const datosPosts = await fetchCatalogo(adminData.token);
+      const datosPosts = await fetchCatalogo();
       dispatch(reset())
       dispatch(addCatalogo(datosPosts));
     } catch (err) {
