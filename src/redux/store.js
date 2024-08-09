@@ -24,13 +24,13 @@ const expirationTransform = createTransform(
     }
     return outboundState;
   },
-  { whitelist: ['catalogo','admin'] } 
+  { whitelist: ['catalogo','admin', 'filter'] } 
 );
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['catalogo','admin'], 
+  whitelist: ['catalogo','admin','filter'], 
   transforms: [expirationTransform],
 };
 

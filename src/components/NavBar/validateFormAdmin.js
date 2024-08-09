@@ -9,6 +9,9 @@ const validateFormAdmin = (formValues) => {
   if (!formValues.password) {
     errors.password = "El password es incorrecto.";
   }
+  if (!formValues.password) {
+    errors.password = "El password es incorrecto.";
+  }
 
   return errors;
 };

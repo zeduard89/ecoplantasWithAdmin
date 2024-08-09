@@ -1,14 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
-import CardPlantas from '../Card/CardPlantas';
-import filtrarPNG from '../Utils/admin/filtrado.png'
-import orderPNG from '../Utils/admin/orderBy.png'
 import { useDispatch, useSelector } from 'react-redux';
+import { addFilterData } from '../../redux/filterSilce'
+import fetchFilter from '../api/fetchFilter'
+import filtrarPNG from '../Utils/admin/filtrado.png'
 import FilterMenu from './FilterMenu';
+import CardPlantas from '../Card/CardPlantas';
+import CardMacetas from '../Card/CardMacetas'
+import CardMaceteroUnit from '../Card/CardMaceteroUnit'
 
 
 const Admin = () => {
 
-  const catalogo = useSelector((state) => state.catalogo);
+  const filterData = useSelector((state) => state.filter.filterArray);
+  const token = useSelector((state) => state.admin.token);
+
+  const dispatch = useDispatch();
   const [searchValues, setSearchValues] = useState({
     search: '',
     plantas: false,
@@ -29,19 +35,18 @@ const Admin = () => {
     setIsMenuOpen(false);
   };
 
-  // useEffect(() => {
-  //   // Función para obtener los datos filtrados desde el backend
-  //   const fetchFilteredData = async () => {
-  //     try {
-    //const response = await fetchCatalogo({ searchValues });
-    //       dispatch({ type: 'UPDATE_CATALOGO', payload: response.data });
-  //     } catch (error) {
-  //       console.error('Error al obtener los datos filtrados:', error);
-  //     }
-  //   };
-
-  //   fetchFilteredData();
-  // }, [searchValues, dispatch]);
+  useEffect(() => {
+    // Función para obtener los datos filtrados desde el backend
+    const fetchFilteredData = async () => {
+      try {
+        const response = await fetchFilter(searchValues, token );
+        dispatch(addFilterData(response.data));
+      } catch (error) {
+        console.error('Error al obtener los datos filtrados:', error);
+      }
+  };
+    fetchFilteredData();
+  }, [searchValues, dispatch]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -72,7 +77,7 @@ const Admin = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className='mt-20 flex flex-col items-center	'>
+    <div className='mt-20 flex flex-col items-center h-fit'>
       <div className='md:hidden w-full mt-6 flex flex-col items-center justify-center text-black'>
         <input className='h-[3rem] w-[90%] text-black text-lg p-5 rounded-lg'
         name='search'
@@ -134,12 +139,21 @@ const Admin = () => {
           </div>
         </div>
         <div className="md:basis-[80%] lg:basis-[85%] flex flex-row justify-center flex-wrap">
-          {catalogo.plantas.map((planta, index) => (
-          <div key={index}>
-            <CardPlantas {...planta} />
-          </div>
-                ))}
-        </div>    
+          {filterData.length === 0 ? null : (
+            filterData.map((element, index) => {
+              if (element.category === 'plantas') {
+                return <CardPlantas key={`plantas-${index}`} {...element} />;
+              } else if (element.category === 'macetas') {
+                return <CardMacetas key={`macetas-${index}`} {...element} />;
+              } else if (element.category === 'maceteros') {
+                // return <CardMaceteros key={`maceteros-${index}`} {...element} />;
+                return <CardMaceteroUnit key={`maceteros-${index}`} {...element} />;
+              } else {
+                return null; // Devuelve null si no coincide ninguna categoría
+              }
+            })
+          )}
+        </div>   
       </div>
     </div>
   )

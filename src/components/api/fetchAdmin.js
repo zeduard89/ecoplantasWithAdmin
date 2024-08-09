@@ -1,7 +1,7 @@
-const VITE_API_BASE_URL2 = import.meta.env.VITE_API_BASE_URL2;
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const fetchAdmin = async ({ formValues }) => {
-  const url = `${VITE_API_BASE_URL2}/adminRoute/adminLogin`; // Cambia esto por la URL de tu API
+  const url = `${VITE_API_BASE_URL}/adminRoute/adminLogin`; // Cambia esto por la URL de tu API
   const adminData = {
     email: formValues.email,
     password: formValues.password,
