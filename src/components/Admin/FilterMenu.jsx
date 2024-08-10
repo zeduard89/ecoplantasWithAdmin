@@ -6,7 +6,7 @@ const FilterMenu = ({ menuRef, isMenuOpen, searchValues, handleChange }) => {
   return (
     <div 
       ref={menuRef}
-      className={`${isMenuOpen ? 'block' : 'hidden'} absolute top-9 right-[39%] z-50  h-[12rem] w-[8.5rem] border-2 rounded-md border-green-600/70 bg-white`} 
+      className={`${isMenuOpen ? 'block' : 'hidden'} absolute top-9 right-[39%] md:right-[45%] z-50  h-[12rem] w-[8.5rem] border-2 rounded-md border-green-600/70 bg-white`} 
       
     >
       <div className='flex flex-col'>
@@ -21,15 +21,15 @@ const FilterMenu = ({ menuRef, isMenuOpen, searchValues, handleChange }) => {
           <option className='text-center' value="lastYear">Último Año</option>
       </select> 
       <label className='mt-5'>
-        <input type="checkbox" name="plantas" value="opcion1" className='mx-2' onChange={handleChange}/> 
+        <input type="checkbox" name="plantas" value="opcion1" className='mx-2' checked={searchValues.plantas}  onChange={handleChange}/> 
         Plantas
       </label>
       <label>
-        <input type="checkbox" name="macetas" value="opcion2" className='mx-2' onChange={handleChange}/>
+        <input type="checkbox" name="macetas" value="opcion2" className='mx-2' checked={searchValues.macetas} onChange={handleChange}/>
         Macetas
       </label>
       <label>
-        <input type="checkbox" name="maceteros" value="opcion3" className='mx-2' onChange={handleChange}/>
+        <input type="checkbox" name="maceteros" value="opcion3" className='mx-2' checked={searchValues.maceteros} onChange={handleChange}/>
         Maceteros
       </label>
       </div>    

@@ -79,14 +79,15 @@ const Admin = () => {
   return (
     <div className='mt-[8rem] flex flex-col items-center h-fit'>
       {/* Filter Small */}
-      <div className='h-[20rem] w-[20rem] mb-5 bg-white rounded-md flex justify-center items-center'>
+      <div className='h-[20rem] w-[90%] mb-5 bg-white rounded-md flex justify-center items-center'>
         <h1>ADMIN DASHBOARD</h1>
       </div>
       <div className='lg:hidden w-full flex flex-col items-center justify-center text-black'>
-        <input className='h-[3rem] w-[90%] text-black text-lg p-5 my-8 rounded-lg'
+        <input className='h-[3rem] w-[60%] text-black text-lg p-5 my-8 rounded-lg'
         name='search'
         type="search"
         placeholder="Buscar Producto"
+        value={searchValues.search}
         onChange={handleChange}
         />
         <div className='relative w-full mb-10 flex flex-row justify-center items-center border-y-2 mt-2'>
@@ -131,19 +132,20 @@ const Admin = () => {
           name='search'
           type="search"
           placeholder="Buscar Producto"
+          value={searchValues.search}
           onChange={handleChange}
           />
           <div className='flex flex-col  border-t-2 border-green-600/70 '>
             <label className='mt-5'>
-              <input type="checkbox" name="plantas" value="opcion1" className='mx-2' onChange={handleChange}/> 
+              <input type="checkbox" name="plantas" value="opcion1" className='mx-2' checked={searchValues.plantas} onChange={handleChange}/> 
               Plantas
             </label>
             <label>
-              <input type="checkbox" name="macetas" value="opcion2" className='mx-2' onChange={handleChange}/>
+              <input type="checkbox" name="macetas" value="opcion2" className='mx-2' checked={searchValues.macetas} onChange={handleChange}/>
               Macetas
             </label>
             <label>
-              <input type="checkbox" name="maceteros" value="opcion3" className='mx-2' onChange={handleChange}/>
+              <input type="checkbox" name="maceteros" value="opcion3" className='mx-2' checked={searchValues.maceteros} onChange={handleChange}/>
               Maceteros
             </label>
             <label className="block  pt-4 border-t-2  border-green-600/70 text-center">
