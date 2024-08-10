@@ -4,7 +4,7 @@ import { increment, decrement, reset } from '../../redux/catalogoSlice';
 import { useLocation } from 'react-router-dom';
 
 
-const CardPlantas = ({ id, title, description, imageUrl, category }) => {
+const CardPlantas = ({ id, title, description, imageUrl, category ,openModal }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const isAdminPage = location.pathname === '/admin'; 
@@ -26,7 +26,7 @@ const CardPlantas = ({ id, title, description, imageUrl, category }) => {
   }
 
   return (
-    <div className='relative text-center rounded-md p-7 h-[25rem] w-[15rem] md:w-[18rem] lg:w-[18rem]'>
+    <div onClick={openModal} className='relative text-center rounded-md p-7 h-[25rem] w-[15rem] md:w-[18rem] lg:w-[18rem]'>
       {!isAdminPage && (
         <>
         <div className='absolute top-10 right-10 bg-white text-black border-2 border-gray-500 w-7 h-7 rounded flex items-center justify-center'>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { increment, decrement, reset } from '../../redux/catalogoSlice';
 import { useLocation } from 'react-router-dom';
 
-const CardMacetas = ({id, title, altura,base,boca,capacidad,imageUrl,peso,description,category }) => {
+const CardMacetas = ({id, title, altura,base,boca,capacidad,imageUrl,peso,description,category,openModal}) => {
         
     const dispatch = useDispatch();
     const location = useLocation();
@@ -29,7 +29,7 @@ const CardMacetas = ({id, title, altura,base,boca,capacidad,imageUrl,peso,descri
     }
 
     return (
-    <div className='relative text-center rounded-md p-7 h-[25rem] w-[15rem] md:w-[18rem] lg:w-[18rem]'>
+    <div onClick={openModal} className='relative text-center rounded-md p-7 h-[25rem] w-[15rem] md:w-[18rem] lg:w-[18rem]'>
         {!isAdminPage && (
           <>
             <div className='absolute top-10 right-10 font-bold bg-green-700/30 border-2 border-gray-500 w-7 h-7 rounded flex items-center justify-center'>

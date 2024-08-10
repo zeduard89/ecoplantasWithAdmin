@@ -10,7 +10,7 @@ const FilterMenu = ({ menuRef, isMenuOpen, searchValues, handleChange }) => {
       
     >
       <div className='flex flex-col'>
-      <label className="mt-1  border-green-600/70 text-center">
+      <label className="my-2  border-green-600/70 text-center">
         Filtrar Por:
       </label>
       <select id='opciones-select' name='filtrado' value={searchValues.filtrado} className=" h-fit w-[80%] ml-3  pt-7  p-1  rounded-md border-green-600/70 border-y-2" onChange={handleChange}>

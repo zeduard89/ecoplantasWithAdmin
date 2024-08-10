@@ -1,8 +1,8 @@
 import React from 'react';
 
-const CardMaceteroUnit = ({ title, description, base, altura, largo, imageUrl }) => {
+const CardMaceteroUnit = ({ title, description, base, altura, largo, imageUrl,openModal }) => {
   return (
-    <div className='relative text-center rounded-md p-7  w-[23rem]'>
+    <div onClick={openModal} className='relative text-center rounded-md p-7  w-[23rem]'>
       <div className=' h-[15rem] '>
         <img 
           src={imageUrl} 
