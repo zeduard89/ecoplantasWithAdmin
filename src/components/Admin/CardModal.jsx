@@ -258,7 +258,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
               value={newValues.title}
               onChange={handleChange}
               placeholder={newValues.title}
-              className="mt-2 p-2 ml-12 border border-gray-300 rounded"
+              className="md:w-[80%] mt-2 p-2 ml-12 border border-gray-300 rounded"
               /> 
           </label>
           <label className='flex items-center pt-2'>Descripcion:
@@ -267,20 +267,52 @@ const CardModal = ({ isOpen, onClose, content }) => {
               value={newValues.description}
               onChange={handleChange}
               placeholder="Description"
-              className="mt-2 p-2 ml-1 border border-gray-300 rounded"
+              className="h-[5rem] w-[80%] mt-2 p-2 ml-1 border border-gray-300 rounded"
               rows="4"
               />
-          </label> 
-          <label>Category: 
-            <input
-            type="text"
-            name="category"
-            value={newValues.category}
-            onChange={handleChange}
-            placeholder={newValues.category}
-            className="mt-2 p-2 ml-6 border border-gray-300 rounded"
-            />
           </label>
+            <label>Category: 
+                <input
+                type="text"
+                name="category"
+                value={newValues.category}
+                onChange={handleChange}
+                placeholder={newValues.category}
+                className="w-[67%] md:w-[80%] mt-2 p-2 ml-6 border border-gray-300 rounded"
+                />
+            </label>
+          <div className='grid grid-cols-2'>
+            <label>Base: 
+                <input
+                type="text"
+                name="base"
+                value={newValues.base}
+                onChange={handleChange}
+                placeholder={newValues.base}
+                className="w-[30%] mt-2 p-2 ml-3 md:ml-3 border border-gray-300 rounded"
+                />
+            </label>
+            <label>Altura: 
+                <input
+                type="text"
+                name="altura"
+                value={newValues.altura}
+                onChange={handleChange}
+                placeholder={newValues.altura}
+                className="w-[30%] mt-2 p-2 ml-2 md:ml-2 border border-gray-300 rounded"
+                />
+            </label>
+            <label>Largo: 
+                <input
+                type="text"
+                name="largo"
+                value={newValues.largo}
+                onChange={handleChange}
+                placeholder={newValues.largo}
+                className="w-[30%] mt-2 p-2 ml-2 lg:ml-6 border border-gray-300 rounded"
+                />
+            </label>
+          </div>
           <input
           type="file"
           onChange={handleFileChange}
