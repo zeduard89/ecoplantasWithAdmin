@@ -71,10 +71,10 @@ const Admin = ({ onScroll }) => {
   return (
     <div>
       <button
-        className='w-10 h-8 mr-5 relative btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:hover:text-blue-700'
+        className='w-10 h-8 relative btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:hover:text-blue-700'
         onClick={handleButtonClick}
       >
-        <img src={adminPng} alt="adminButton" className='h-[2rem] ml-4 mt-3' />
+        <img src={adminPng} alt="adminButton" className='h-[2rem] my-3 mr-6' />
       </button>
 
       {isModalOpen && (

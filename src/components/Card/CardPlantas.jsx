@@ -51,15 +51,21 @@ const CardPlantas = ({ id, title, description, imageUrl, category }) => {
           >
             -
           </button>
+          <h1 className='h-[2.5rem] rounded-b-md text-white flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
+                {title}
+          </h1>
         </>
       )}
-
-      <h1 className='h-[2.5rem] text-white flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
-        {title}
-      </h1>
-      <h4 className='h-[30%] bg-green-700/20 p-2 rounded-b-md text-[0.79rem] md:text-sm lg:text-sm overflow-hidden text-ellipsis'>
-        {description}
-      </h4>
+      {isAdminPage && (
+        <>
+          <h1 className='h-[2.5rem] text-white flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
+            {title}
+          </h1>
+          <h4 className='h-[30%] bg-green-700/20 p-2 rounded-b-md text-[0.79rem] md:text-sm lg:text-sm overflow-hidden text-ellipsis'>
+            {description}
+          </h4>
+        </>
+      )}
     </div>
   );
 };

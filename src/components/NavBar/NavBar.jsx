@@ -149,7 +149,7 @@ function NavBar({ onScroll }) {
       </div>
 
       {isMenuOpen?"":
-      <div className='flex flex-row'>
+      <div className='flex flex-row gap-3'>
         <ButtonCarrito onScroll={onScroll} />
         <ButtonAdmin onScroll={onScroll} />
       </div>}
