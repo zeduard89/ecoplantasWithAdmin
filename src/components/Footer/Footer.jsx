@@ -18,7 +18,7 @@ const Footer = () => {
   
   return (
     
-  <footer className="w-full bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+  <footer className="w-full mt-10 bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
       
     <div className="md:h-[2rem] h-[3rem] flex items-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 justify-between">
       <a className='flex items-center' href="https://www.ecoplantas.com.ar/">

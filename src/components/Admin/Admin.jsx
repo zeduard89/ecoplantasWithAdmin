@@ -77,19 +77,23 @@ const Admin = () => {
   }, [isMenuOpen]);
 
   return (
-    <div className='mt-20 flex flex-col items-center h-fit'>
-      <div className='md:hidden w-full mt-6 flex flex-col items-center justify-center text-black'>
-        <input className='h-[3rem] w-[90%] text-black text-lg p-5 rounded-lg'
+    <div className='mt-[8rem] flex flex-col items-center h-fit'>
+      {/* Filter Small */}
+      <div className='h-[20rem] w-[20rem] mb-5 bg-white rounded-md flex justify-center items-center'>
+        <h1>ADMIN DASHBOARD</h1>
+      </div>
+      <div className='lg:hidden w-full flex flex-col items-center justify-center text-black'>
+        <input className='h-[3rem] w-[90%] text-black text-lg p-5 my-8 rounded-lg'
         name='search'
         type="search"
         placeholder="Buscar Producto"
         onChange={handleChange}
         />
-        <div className='relative w-full flex flex-row justify-center items-center border-y-2 mt-2'>
+        <div className='relative w-full mb-10 flex flex-row justify-center items-center border-y-2 mt-2'>
           <button  
             ref={buttonRef}
             type="button"
-            className=" inline-flex items-center justify-center p-2 w-fit h-fit mr-1 mt-2 mb-3 text-sm rounded-lg hover:bg-green-400/20 focus:outline-none  focus:ring-gray-200  "
+            className=" inline-flex items-center justify-center border-2 bg-gray-200 border-slate-400 p-2 w-fit h-fit mr-1 mt-2 mb-3 text-sm rounded-lg hover:bg-green-400/20 focus:outline-none  focus:ring-gray-200  "
             aria-expanded={isMenuOpen}
             onClick={handleMenuToggle}
           >
@@ -99,21 +103,37 @@ const Admin = () => {
           <FilterMenu menuRef={menuRef}  isMenuOpen={isMenuOpen} searchValues={searchValues} handleChange={handleChange}/>
         </div>
       </div>
+      {/* CARDS small-Screen*/}
+      <div className="lg:hidden flex flex-row justify-center flex-wrap">
+          {filterData.length === 0 ? <h1 className='my-2 font-bold text-black text-2xl'>Realize una busqueda</h1> : (
+            filterData.map((element, index) => {
+              if (element.category === 'plantas') {
+                return <CardPlantas key={`plantas-${index}`} {...element} />;
+              } else if (element.category === 'macetas') {
+                return <CardMacetas key={`macetas-${index}`} {...element} />;
+              } else if (element.category === 'maceteros') {
+                // return <CardMaceteros key={`maceteros-${index}`} {...element} />;
+                return <CardMaceteroUnit key={`maceteros-${index}`} {...element} />;
+              } else {
+                return null; // Devuelve null si no coincide ninguna categoría
+              }
+            })
+          )}
+        </div>   
 
 
       
-      <div className='flex '>
-        <div className='hidden md:block md:basis-[20%] lg:basis-[15%] h-[20rem] w-full mt-[6rem] ml-6 font-bold border-green-600/70 sticky top-[12rem] bg-white  text-black border-2 border-b-2 rounded-md'>
-        <h2 className='text-xl py-2 text-center border-b-2 border-green-600/70 '>FILTRAR</h2>
-          <input className='h-[1rem] mx-2 my-3 text-center  text-black text-lg p-5 rounded-lg border-y-2 border-green-600/70'
+      <div className='w-full flex flex-row text-center'>
+        {/* FILTER GRANDE */}
+        <div className='hidden lg:block h-[20rem] w-fit mt-[6rem] ml-6 font-bold border-green-600/70 sticky top-[12rem] bg-white  text-black border-2 border-b-2 rounded-md'>
+          <h2 className='text-xl py-2  border-b-2 border-green-600/70 '>FILTRAR</h2>
+          <input className='h-[1rem] mx-2 my-3   text-black text-lg p-5 rounded-lg border-y-2 border-green-600/70'
           name='search'
           type="search"
           placeholder="Buscar Producto"
           onChange={handleChange}
           />
-          <div className='flex flex-row justify-center items-center border-b-2 border-green-600/70'>
-          </div>
-          <div className='flex flex-col '>
+          <div className='flex flex-col  border-t-2 border-green-600/70 '>
             <label className='mt-5'>
               <input type="checkbox" name="plantas" value="opcion1" className='mx-2' onChange={handleChange}/> 
               Plantas
@@ -138,8 +158,10 @@ const Admin = () => {
             </select>
           </div>
         </div>
-        <div className="md:basis-[80%] lg:basis-[85%] flex flex-row justify-center flex-wrap">
-          {filterData.length === 0 ? null : (
+        {/* CARDS big-screen*/}
+        <div className="hidden lg:block">
+          <div className='flex flex-wrap justify-center gap-5'>
+          {filterData.length === 0 ? <h1 className='h-full font-bold text-black text-2xl'>Realize una busqueda</h1> : (
             filterData.map((element, index) => {
               if (element.category === 'plantas') {
                 return <CardPlantas key={`plantas-${index}`} {...element} />;
@@ -153,6 +175,7 @@ const Admin = () => {
               }
             })
           )}
+          </div>
         </div>   
       </div>
     </div>
