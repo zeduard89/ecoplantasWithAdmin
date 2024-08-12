@@ -7,7 +7,7 @@ import CardMacetas from '../Card/CardMacetas'
 import CardMaceteroUnit from '../Card/CardMaceteroUnit'
 import BigScreenFilter from './bigScreenFilter';
 import SmallScreenFilter from './SmallScreenFilter';
-import CardModal from './CardModal';
+import CardModal from './CardModal/CardModal';
  
 const Admin = () => {
 
