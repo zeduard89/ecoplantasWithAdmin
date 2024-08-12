@@ -100,7 +100,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
     if (!isOpen) return null; // Si el modal no está abierto, no se renderiza
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white text-black w-[20rem] md:w-[80%] h-fit md:h-[80%] p-4 rounded-lg shadow-lg relative max-w-lg w-full">
+      <div className="bg-white text-black w-[20rem] md:w-[80%] h-fit md:h-[80%] mx-2 p-4 rounded-lg shadow-lg relative max-w-lg w-full">
         <button onClick={onClose} className="absolute top-0 right-0 mt-2 mr-2 text-black">
           Close
         </button>
@@ -108,7 +108,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
         {/* Renderiza el contenido basado en la categoría */}
         {content.category === 'plantas' && (
           <div className='flex flex-col'>
-            <img src={content.imageUrl} alt={content.imageUrl} className="w-[10rem] h-auto rounded-md" />
+            <img src={content.imageUrl} alt={content.imageUrl} className="w-[9rem] h-auto rounded-md" />
             <label className='flex items-center pt-2'>Titulo:
                 <input
                 type="text"
@@ -144,7 +144,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
             onChange={handleFileChange}
             className="mt-2"
             />
-            <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+            <button onClick={handleSave} className="mt-3 bg-blue-500 text-white px-4 py-2 rounded">
                 Save
             </button>         
           </div>
@@ -160,16 +160,16 @@ const CardModal = ({ isOpen, onClose, content }) => {
               value={newValues.title}
               onChange={handleChange}
               placeholder={newValues.title}
-              className="h-[1.5rem] md:h-[1.2rem] md:w-[43%] p-2 md:ml-9 ml-2 border border-gray-300 rounded"
+              className="h-[1.5rem] md:h-[1.2rem] md:w-[43%] w-[49%] p-2 md:ml-9 ml-2 border border-gray-300 rounded"
               /> 
           </label>
-          <label className='h-[5rem] md:h-[12rem] flex items-center pt-2'>Descripcion:
+          <label className='h-[5rem] md:h-[7rem] flex items-center pt-2'>Descripcion:
               <textarea
               name="description"
               value={newValues.description}
               onChange={handleChange}
               placeholder="Description"
-              className="h-[4rem] md:h-[10rem] w-[43%] mt-2 p-2 ml-1 border border-gray-300 rounded"
+              className="h-[4rem] md:h-[5rem] w-[43%]  mt-2 p-2 ml-1 border border-gray-300 rounded"
               rows="4"
               />
           </label> 
@@ -249,8 +249,8 @@ const CardModal = ({ isOpen, onClose, content }) => {
         )}
 
         {content.category === 'maceteros' && (
-          <div className='flex flex-col'>
-          <img src={content.imageUrl} alt={content.imageUrl} className="w-[10rem] h-auto rounded-md" />
+          <div className='flex flex-col text-xs'>
+          <img src={content.imageUrl} alt={content.imageUrl} className="w-[10rem] rounded-md" />
           <label className='flex items-center pt-2'>Titulo:
               <input
               type="text"
@@ -258,7 +258,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
               value={newValues.title}
               onChange={handleChange}
               placeholder={newValues.title}
-              className="md:w-[80%] mt-2 p-2 ml-12 border border-gray-300 rounded"
+              className="w-[75%] md:w-[80%] h-7 mt-2 p-2 ml-12 border border-gray-300 rounded"
               /> 
           </label>
           <label className='flex items-center pt-2'>Descripcion:
@@ -267,7 +267,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
               value={newValues.description}
               onChange={handleChange}
               placeholder="Description"
-              className="h-[5rem] w-[80%] mt-2 p-2 ml-1 border border-gray-300 rounded"
+              className="h-[4rem]  w-[83%] mt-2 md:mt-0 p-2 ml-1 border border-gray-300 rounded"
               rows="4"
               />
           </label>
@@ -278,7 +278,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
                 value={newValues.category}
                 onChange={handleChange}
                 placeholder={newValues.category}
-                className="w-[67%] md:w-[80%] mt-2 p-2 ml-6 border border-gray-300 rounded"
+                className="w-[75%] md:w-[82%] h-7 mt-2 p-2 ml-6 border border-gray-300 rounded"
                 />
             </label>
           <div className='grid grid-cols-2'>
@@ -289,7 +289,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
                 value={newValues.base}
                 onChange={handleChange}
                 placeholder={newValues.base}
-                className="w-[30%] mt-2 p-2 ml-3 md:ml-3 border border-gray-300 rounded"
+                className="w-[30%] md:w-[36%] h-7 mt-2 p-2 ml-3 md:ml-3 border border-gray-300 rounded"
                 />
             </label>
             <label>Altura: 
@@ -299,7 +299,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
                 value={newValues.altura}
                 onChange={handleChange}
                 placeholder={newValues.altura}
-                className="w-[30%] mt-2 p-2 ml-2 md:ml-2 border border-gray-300 rounded"
+                className="w-[30%] h-7 mt-2 p-2 ml-2 md:ml-2 border border-gray-300 rounded"
                 />
             </label>
             <label>Largo: 
@@ -309,7 +309,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
                 value={newValues.largo}
                 onChange={handleChange}
                 placeholder={newValues.largo}
-                className="w-[30%] mt-2 p-2 ml-2 lg:ml-6 border border-gray-300 rounded"
+                className="w-[30%] h-7 mt-2 p-2 ml-2 lg:ml-6 border border-gray-300 rounded"
                 />
             </label>
           </div>
