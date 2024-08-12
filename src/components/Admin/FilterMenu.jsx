@@ -15,8 +15,8 @@ const FilterMenu = ({ menuRef, isMenuOpen, searchValues, handleChange }) => {
       </label>
       <select id='opciones-select' name='filtrado' value={searchValues.filtrado} className=" h-fit w-[80%] ml-3  pt-7  p-1  rounded-md border-green-600/70 border-y-2" onChange={handleChange}>
         <option className='text-center  ' value=""   disabled>Selecciona...</option>
-          <option className='text-center' value="asc">Reciente</option>
-          <option className='text-center' value="des">Antiguo</option>
+          <option className='text-center' value="asc">Ascendente</option>
+          <option className='text-center' value="des">Descendente</option>
           <option className='text-center' value="lastMonth">Último Mes</option>
           <option className='text-center' value="lastYear">Último Año</option>
       </select> 

@@ -1,6 +1,6 @@
 const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const fetchCatalogo = async (filterData, token) => {
+const fetchFilter = async (filterData, token) => {
   const url = `${VITE_API_BASE_URL}/filterRoute/filter`;
   try {
     const response = await fetch(url, {
@@ -12,8 +12,8 @@ const fetchCatalogo = async (filterData, token) => {
       body: JSON.stringify(filterData),
     });
     const data = await response.json();
-
-    if (data) {
+    
+    if (data ) {
       return {data};
     } else {
       return { success: false, ...data };
@@ -23,4 +23,4 @@ const fetchCatalogo = async (filterData, token) => {
   }
 };
 
-export default fetchCatalogo;
+export default fetchFilter;

@@ -1,14 +1,20 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PlantModal from './plantModal';
+import MacetaModal from './MacetaModal';
+import MaceteroModal from './MaceteroModal';
+import fetchUpdate from '../../api/fetchUpdate';
+import fetchCatalogo from '../../api/fetchCatalogo';
+import { addCatalogo } from '../../../redux/catalogoSlice';
 
 const CardModal = ({ isOpen, onClose, content }) => {
 
-    const filterData = useSelector((state) => state.filter.filterArray);
     const token = useSelector((state) => state.admin.token);
     const dispatch = useDispatch();
 
     const [newValues, setNewValues] = useState({
+        id:'',
         title: '',
         description: '',
         imageUrl: '',
@@ -25,8 +31,8 @@ const CardModal = ({ isOpen, onClose, content }) => {
 
     useEffect(() => {
         if (content) {
-          console.log(content)
           setNewValues({
+            id:content.id || '',
             title: content.title || '',
             description: content.description || '',
             imageUrl: content.imageUrl || '',
@@ -58,13 +64,14 @@ const CardModal = ({ isOpen, onClose, content }) => {
           reader.onloadend = () => {
             setPreviewUrl(reader.result);
           };
-          console.log(file)
+          //console.log(file)
           reader.readAsDataURL(file);
         }
       };
 
-      const handleSave = () => {
+      const handleSave = async () => {
         const formData = new FormData();
+        formData.append('id', newValues.id);
         formData.append('title', newValues.title);
         formData.append('description', newValues.description);
         formData.append('category', newValues.category);
@@ -74,30 +81,27 @@ const CardModal = ({ isOpen, onClose, content }) => {
         formData.append('capacidad', newValues.capacidad);
         formData.append('peso', newValues.peso);
         formData.append('largo', newValues.largo);
+        formData.append('oldImageUrl', newValues.imageUrl)
         if (imageFile) {
           formData.append('image', imageFile);
         }
     
-        console.log('Saving new values:', newValues);
-        console.log('Saving file:', imageFile);
-    
-        // Ejemplo de llamada a la API (ajusta la URL y el método según tu API)
-        // fetch('https://your-backend-api.com/update', {
-        //   method: 'POST',
-        //   body: formData,
-        // }).then(response => response.json())
-        //   .then(data => {
-        //     console.log('Success:', data);
-        //     onClose();
-        //   })
-        //   .catch(error => {
-        //     console.error('Error:', error);
-        //   });
-    
-        onClose(); // Cierra el modal después de guardar
+        // console.log('Saving new values:', newValues);
+        // console.log('Saving file:', imageFile);
+        const fetchCategory = newValues.category
+        const data = await fetchUpdate(formData, token, fetchCategory);
+         if (data) {
+        const datosPosts = await fetchCatalogo();
+        dispatch(addCatalogo(datosPosts));
+           window.location.reload();
+
+         } else {
+             console.error('Error saving data:', data);
+         }
+        onClose(); 
       };
 
-    if (!isOpen) return null; // Si el modal no está abierto, no se renderiza
+    if (!isOpen) return null; 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white text-black w-[20rem] md:w-[80%] h-fit  mx-2 p-4 rounded-lg shadow-lg relative max-w-lg ">
@@ -105,225 +109,11 @@ const CardModal = ({ isOpen, onClose, content }) => {
           Close
         </button>
 
-        {/* Renderiza el contenido basado en la categoría */}
-        {content.category === 'plantas' && (
-          <div className='flex flex-col'>
-            <img src={content.imageUrl} alt={content.imageUrl} className="w-[9rem] h-auto rounded-md" />
-            <label className='flex items-center pt-2'>Titulo:
-                <input
-                type="text"
-                name="title"
-                value={newValues.title}
-                onChange={handleChange}
-                placeholder={newValues.title}
-                className="w-[64%] mt-2 p-2 ml-12 border border-gray-300 rounded"
-                /> 
-            </label>
-            <label className='flex items-center pt-2'>Descripcion:
-                <textarea
-                name="description"
-                value={newValues.description}
-                onChange={handleChange}
-                placeholder="Description"
-                className="w-[64%] mt-2 p-2 ml-1 border border-gray-300 rounded"
-                rows="4"
-                />
-            </label> 
-            <label>Category: 
-            <input
-            type="text"
-            name="category"
-            value={newValues.category}
-            onChange={handleChange}
-            placeholder={newValues.category}
-            className="w-[64%] mt-2 p-2 ml-6 border border-gray-300 rounded"
-            />
-            </label>
-            <input
-            type="file"
-            onChange={handleFileChange}
-            className="mt-2"
-            />
-            <button onClick={handleSave} className="mt-3 bg-blue-500 text-white px-4 py-2 rounded">
-                Save
-            </button>         
-          </div>
-        )}
+        <PlantModal content={content} newValues={newValues} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+        <MacetaModal content={content} newValues={newValues} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+        <MaceteroModal content={content} newValues={newValues} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+        
 
-        {content.category === 'macetas' && (
-          <div className='flex flex-col text-xs'>
-          <img src={content.imageUrl} alt={content.imageUrl} className="md:w-[10rem] w-[6rem] h-auto rounded-md" />
-          <label className='h-[0.5rem] mt-3  flex items-center pt-2'>Titulo:
-              <input
-              type="text"
-              name="title"
-              value={newValues.title}
-              onChange={handleChange}
-              placeholder={newValues.title}
-              className="h-[1.5rem] md:h-[1.2rem] md:w-[43%] w-[49%] p-2 md:ml-9 ml-2 border border-gray-300 rounded"
-              /> 
-          </label>
-          <label className='h-[5rem] md:h-[7rem] flex items-center pt-2'>Descripcion:
-              <textarea
-              name="description"
-              value={newValues.description}
-              onChange={handleChange}
-              placeholder="Description"
-              className="h-[4rem] md:h-[5rem] w-[43%]  mt-2 p-2 ml-1 border border-gray-300 rounded"
-              rows="4"
-              />
-          </label> 
-          <div className='grid grid-cols-2'>
-            <label>Category: 
-                <input
-                type="text"
-                name="category"
-                value={newValues.category}
-                onChange={handleChange}
-                placeholder={newValues.category}
-                className="md:w-[40%] w-[50%] mt-2 p-2 ml-1 md:ml-6 border border-gray-300 rounded text-center"
-                />
-            </label>
-            <label>Base: 
-                <input
-                type="text"
-                name="base"
-                value={newValues.mase}
-                onChange={handleChange}
-                placeholder={newValues.mase}
-                className="md:w-[52%] w-[50%] mt-2 p-2 ml-2 md:ml-6 border border-gray-300 rounded text-center"
-                />
-            </label>
-            <label>Boca: 
-                <input
-                type="text"
-                name="boca"
-                value={newValues.boca}
-                onChange={handleChange}
-                placeholder={newValues.boca}
-                className="md:w-[50%] w-[60%] mt-2 p-2 ml-2 md:ml-6 border border-gray-300 rounded text-center"
-                />
-            </label>
-            <label>Altura: 
-                <input
-                type="text"
-                name="altura"
-                value={newValues.altura}
-                onChange={handleChange}
-                placeholder={newValues.altura}
-                className="md:w-[50%] w-[50%] mt-2 p-2 ml-1 md:ml-6 border border-gray-300 rounded text-center"
-                />
-            </label>
-            <label>Peso: 
-                <input
-                type="text"
-                name="peso"
-                value={newValues.peso}
-                onChange={handleChange}
-                placeholder={newValues.peso}
-                className="md:w-[50%] w-[60%] mt-2 p-2 ml-2 md:ml-6 border border-gray-300 rounded text-center"
-                />
-            </label>
-            <label>Capacidad: 
-                <input
-                type="text"
-                name="capacidad"
-                value={newValues.capacidad}
-                onChange={handleChange}
-                placeholder={newValues.capacidad}
-                className="md:w-[45%] w-[30%] mt-2 p-2 ml-2 md:ml-2 border border-gray-300 rounded text-center"
-                />
-            </label>
-          </div>
-          
-          <input
-          type="file"
-          onChange={handleFileChange}
-          className="mt-2"
-          />
-          <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
-              Save
-          </button>         
-          {/* Agrega aquí cualquier detalle adicional que quieras mostrar para "plantas" */}
-        </div>
-        )}
-
-        {content.category === 'maceteros' && (
-          <div className='flex flex-col text-xs'>
-          <img src={content.imageUrl} alt={content.imageUrl} className="w-[10rem] rounded-md" />
-          <label className='flex items-center pt-2'>Titulo:
-              <input
-              type="text"
-              name="title"
-              value={newValues.title}
-              onChange={handleChange}
-              placeholder={newValues.title}
-              className="w-[75%] md:w-[80%] h-7 mt-2 p-2 ml-12 border border-gray-300 rounded"
-              /> 
-          </label>
-          <label className='flex items-center pt-2'>Descripcion:
-              <textarea
-              name="description"
-              value={newValues.description}
-              onChange={handleChange}
-              placeholder="Description"
-              className="h-[4rem]  w-[83%] mt-2 md:mt-0 p-2 ml-1 border border-gray-300 rounded"
-              rows="4"
-              />
-          </label>
-            <label>Category: 
-                <input
-                type="text"
-                name="category"
-                value={newValues.category}
-                onChange={handleChange}
-                placeholder={newValues.category}
-                className="w-[75%] md:w-[82%] h-7 mt-2 p-2 ml-6 border border-gray-300 rounded"
-                />
-            </label>
-          <div className='grid grid-cols-2'>
-            <label>Base: 
-                <input
-                type="text"
-                name="base"
-                value={newValues.base}
-                onChange={handleChange}
-                placeholder={newValues.base}
-                className="w-[30%] md:w-[36%] h-7 mt-2 p-2 ml-3 md:ml-3 border border-gray-300 rounded"
-                />
-            </label>
-            <label>Altura: 
-                <input
-                type="text"
-                name="altura"
-                value={newValues.altura}
-                onChange={handleChange}
-                placeholder={newValues.altura}
-                className="w-[30%] h-7 mt-2 p-2 ml-2 md:ml-2 border border-gray-300 rounded"
-                />
-            </label>
-            <label>Largo: 
-                <input
-                type="text"
-                name="largo"
-                value={newValues.largo}
-                onChange={handleChange}
-                placeholder={newValues.largo}
-                className="w-[30%] h-7 mt-2 p-2 ml-2 lg:ml-6 border border-gray-300 rounded"
-                />
-            </label>
-          </div>
-          <input
-          type="file"
-          onChange={handleFileChange}
-          className="mt-2"
-          />
-          <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
-              Save
-          </button>         
-          {/* Agrega aquí cualquier detalle adicional que quieras mostrar para "plantas" */}
-        </div>
-        )}
 
       
       </div>

@@ -1,7 +1,7 @@
 const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const fetchAdmin = async ({ formValues }) => {
-  const url = `${VITE_API_BASE_URL}/adminRoute/adminLogin`; // Cambia esto por la URL de tu API
+  const url = `${VITE_API_BASE_URL}/adminRoute/adminLogin`;
   const adminData = {
     email: formValues.email,
     password: formValues.password,
@@ -19,13 +19,12 @@ const fetchAdmin = async ({ formValues }) => {
     const data = await response.json();
 
     if (data.token) {
-      return { success: data.ok, token: data.token }; // Devuelve el resultado en caso de éxito
+      return { success: data.ok, token: data.token }; 
     } else {
-      return { success: false, ...data }; // Devuelve un objeto de error
+      return { success: false, ...data }; 
     }
   } catch (error) {
-    //console.error('Error occurred during login:', error);
-    return { success: false, error: 'Network error' }; // Devuelve un objeto de error de red
+    return { success: false, error: 'Network error' };
   }
 };
 

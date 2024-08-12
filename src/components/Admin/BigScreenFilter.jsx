@@ -29,8 +29,8 @@ const BigScreenFilter = ({ searchValues, handleChange }) => {
         </label>
         <select id='opciones-select' name='filtrado' value={searchValues.filtrado} className="w-[77%] h-full ml-7 pt-7  p-1  rounded-md border-green-600/70 border-y-2" onChange={handleChange}>
             <option className='text-center' value=""   disabled>Selecciona...</option>
-            <option className='text-center' value="asc">Más Reciente Primero</option>
-            <option className='text-center' value="des">Más Antiguo Primero</option>
+            <option className='text-center' value="asc">Ascendente</option>
+            <option className='text-center' value="des">Descendente</option>
             <option className='text-center' value="lastMonth">Último Mes</option>
             <option className='text-center' value="lastYear">Último Año</option>
         </select>
