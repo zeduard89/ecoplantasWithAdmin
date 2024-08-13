@@ -24,7 +24,7 @@ const DashBoard = ({token, setSearchValues}) => {
     const [imageFile, setImageFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -65,13 +65,16 @@ const DashBoard = ({token, setSearchValues}) => {
             if (response.data?.error) {
                 setErrorMessage('Tu sesión ha expirado o ha habido un error. Por favor, inicia sesión nuevamente.');
                 dispatch(adminToken('')); // Asegúrate de que esta acción esté importada
+                setSuccessMessage('');
                 return;
             }
             if (response.errorMessage) {
                 setErrorMessage(response.errorMessage);
+                setSuccessMessage('');
                 return;
             }
 
+            setSuccessMessage('Creación exitosa');
             setErrorMessage('');
             setNewValues({
                 title: '',
@@ -96,6 +99,7 @@ const DashBoard = ({token, setSearchValues}) => {
                 filtrado:'',});
             // window.location.reload();
         } catch (error) {
+            setSuccessMessage('');
             setErrorMessage('Hubo un error al guardar los datos. Por favor, inténtalo de nuevo.');
         }
     };
@@ -119,6 +123,8 @@ const DashBoard = ({token, setSearchValues}) => {
                     <option value="maceteros">Maceteros</option>
                 </select>
                 {setErrorMessage && (<p className='h-fit text-rose-400'>{errorMessage}</p>)}
+                {successMessage && <p className='h-fit text-green-400'>{successMessage}</p>}
+
                 {newValues.category === 'plantas' && (
                     <PlantModal key="plantas" dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'plantas' }}
                     handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>    
@@ -132,6 +138,7 @@ const DashBoard = ({token, setSearchValues}) => {
                     handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>    
                 )}    
             </div>
+
             <div className='hidden md:block bg-white h-[20rem] w-full ml-10 rounded-lg '></div>
         </div>
     );

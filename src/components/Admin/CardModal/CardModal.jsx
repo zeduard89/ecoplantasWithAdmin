@@ -21,7 +21,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
         imageUrl: '',
         category: '',
         altura: '',
-        base: '',
+        base: '20',
         boca: '',
         capacidad: '',
         peso: '',
@@ -90,7 +90,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
         formData.append('description', newValues.description);
         formData.append('category', newValues.category);
         formData.append('altura', newValues.altura);
-        formData.append('base', newValues.base);
+        formData.append('20', newValues.base);
         formData.append('boca', newValues.boca);
         formData.append('capacidad', newValues.capacidad);
         formData.append('peso', newValues.peso);

@@ -24,7 +24,6 @@ const fetchDelete = async (content,token) => {
             }
         });
         const data = await response.json();
-        console.log(data)
 
         if (data.token && data.message) {
             return { data };

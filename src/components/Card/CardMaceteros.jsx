@@ -13,7 +13,6 @@ const CardMaceteros = ({maceteros }) => {
     // obtengo un array filtrado (todos mismo dato:BASE) de elementos por cada card
     // por eso con que el primero coincida es suficiente
     const base = maceteros[0].base || "";
-
     const handleIncrement = () => {
         dispatch(incrementMaceterosL({ base }));
     };
@@ -26,7 +25,7 @@ const CardMaceteros = ({maceteros }) => {
       if (!element.imageUrl) {
         console.error('Image is undefined or null');
         return;
-      } else {
+      } else if (element.imageUrl){
         imgArray.push(element.imageUrl);
       }
     });

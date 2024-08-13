@@ -28,15 +28,20 @@ const MaceteroModal = ({dashBoardKey, content, newValues,handleFileChange,handle
           </label>
             <label>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
           <div className='grid grid-cols-2'>
-            <label>Base: 
-                <input
-                type="text"
-                name="base"
-                value={newValues.base}
-                onChange={handleChange}
-                placeholder={newValues.base}
-                className="w-[30%] md:w-[36%] h-7 mt-2 p-2 ml-3 md:ml-3 border border-gray-300 rounded"
-                />
+            <label>
+                Base:
+                <select
+                    name="base"
+                    value={newValues.base}
+                    onChange={handleChange}
+                    className="w-[60%] md:w-[60%] h-8 mt-2 p-2 ml-3 md:ml-3 border border-gray-300 rounded"
+                >
+                    <option value="" disabled hidden>
+                        Selecciona una base
+                    </option>
+                    <option value="20">20 cm</option>
+                    <option value="30">30 cm</option>
+                </select>
             </label>
             <label>Altura: 
                 <input
@@ -45,7 +50,7 @@ const MaceteroModal = ({dashBoardKey, content, newValues,handleFileChange,handle
                 value={newValues.altura}
                 onChange={handleChange}
                 placeholder={newValues.altura}
-                className="w-[30%] h-7 mt-2 p-2 ml-2 md:ml-2 border border-gray-300 rounded"
+                className="w-[60%] h-8 mt-2 p-2 ml-2 md:ml-2 border border-gray-300 rounded"
                 />
             </label>
             <label>Largo: 
@@ -55,7 +60,7 @@ const MaceteroModal = ({dashBoardKey, content, newValues,handleFileChange,handle
                 value={newValues.largo}
                 onChange={handleChange}
                 placeholder={newValues.largo}
-                className="w-[30%] h-7 mt-2 p-2 ml-2 lg:ml-6 border border-gray-300 rounded"
+                className="w-[60%] h-8 mt-2 p-2 ml-2 lg:ml-6 border border-gray-300 rounded"
                 />
             </label>
           </div>
