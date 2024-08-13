@@ -6,6 +6,7 @@ import MacetaModal from './MacetaModal';
 import MaceteroModal from './MaceteroModal';
 import fetchUpdate from '../../api/fetchUpdate';
 import fetchCatalogo from '../../api/fetchCatalogo';
+import fetchDelete from '../../api/fetchDelete';
 import { addCatalogo } from '../../../redux/catalogoSlice';
 
 const CardModal = ({ isOpen, onClose, content }) => {
@@ -47,6 +48,19 @@ const CardModal = ({ isOpen, onClose, content }) => {
           setPreviewUrl(content.imageUrl || '');
         }
       }, [content]);
+
+    const handleDelete = async() =>{
+      try {
+        const response = fetchDelete(content,token);
+        console.log(response)
+        
+      } catch (error) {
+        
+        console.error('Error Borrando:', data);
+        onClose(); 
+      };
+    }
+      
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -93,7 +107,6 @@ const CardModal = ({ isOpen, onClose, content }) => {
          if (data) {
         const datosPosts = await fetchCatalogo();
         dispatch(addCatalogo(datosPosts));
-           window.location.reload();
 
          } else {
              console.error('Error saving data:', data);
@@ -109,9 +122,9 @@ const CardModal = ({ isOpen, onClose, content }) => {
           Close
         </button>
 
-        <PlantModal content={content} newValues={newValues} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
-        <MacetaModal content={content} newValues={newValues} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
-        <MaceteroModal content={content} newValues={newValues} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+        <PlantModal content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+        <MacetaModal content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+        <MaceteroModal content={content} newValues={newValues} handleDelete={handleDelete}  handleFileChange={handleFileChange} handleSave={handleSave}  handleChange={handleChange}/>
         
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
-const MacetaModal = ({content, newValues,handleFileChange,handleSave,handleChange}) => {
-  return (
+const MacetaModal = ({dashBoardKey ,content, newValues,handleFileChange,handleSave,handleDelete,handleChange}) => {
+    return (
     <>
             {content.category === 'macetas' && (
           <div className='flex flex-col text-xs'>
@@ -85,9 +85,16 @@ const MacetaModal = ({content, newValues,handleFileChange,handleSave,handleChang
           onChange={handleFileChange}
           className="mt-2"
           />
-          <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
-              Guardar
-          </button>         
+          <div className='w-[80%]'>
+            <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                Guardar
+            </button> 
+        {!dashBoardKey &&
+            <button onClick={handleDelete} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                Borrar
+            </button> 
+        }        
+          </div>
         </div>
         )} 
     </>

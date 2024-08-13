@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MaceteroModal = ({content, newValues,handleFileChange,handleSave,handleChange}) => {
+const MaceteroModal = ({dashBoardKey, content, newValues,handleFileChange,handleSave,handleChange,handleDelete}) => {
   return (
     <>
     {content.category === 'maceteros' && (
@@ -64,9 +64,16 @@ const MaceteroModal = ({content, newValues,handleFileChange,handleSave,handleCha
           onChange={handleFileChange}
           className="mt-2"
           />
-          <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
-              Guardar
-          </button>         
+          <div className='w-[80%]'>
+            <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                Guardar
+            </button> 
+            {!dashBoardKey &&
+            <button onClick={handleDelete} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                Borrar
+            </button> 
+            }        
+          </div>          
         </div>
         )}
     </>

@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import PlantModal from './CardModal/plantModal';
 import MacetaModal from './CardModal/MacetaModal';
 import MaceteroModal from './CardModal/MaceteroModal';
+import fetchUpload from '../api/fetchUpload';
 
-const DashBoard = () => {
-    const token = useSelector((state) => state.admin.token);
+const DashBoard = ({token, setSearchValues}) => {
     const dispatch = useDispatch();
+    const dashBoardKey = true
 
     const [newValues, setNewValues] = useState({
         title: 'Title',
@@ -22,6 +23,8 @@ const DashBoard = () => {
     });
     const [imageFile, setImageFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -56,23 +59,49 @@ const DashBoard = () => {
         formData.append('largo', newValues.largo);
         formData.append('image', imageFile);
 
-        // Implementar la lógica para guardar los datos
-        // const data = await fetchUpdate(formData, token);
-        // if (data) {
-        //     dispatch(addCatalogo(data));
-        //     window.location.reload();
-        // } else {
-        //     console.error('Error saving data:', data);
-        // }
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
+        try {
+            const fetchCategory = newValues.category;
+            const response = await fetchUpload(formData, token, fetchCategory);
+            if (response.data?.error) {
+                setErrorMessage('Tu sesión ha expirado o ha habido un error. Por favor, inicia sesión nuevamente.');
+                dispatch(adminToken('')); // Asegúrate de que esta acción esté importada
+                return;
+            }
+            if (response.errorMessage) {
+                setErrorMessage(response.errorMessage);
+                return;
+            }
 
+            setErrorMessage('');
+            setNewValues({
+                title: '',
+                description: '',
+                imageUrl: '',
+                category: 'plantas',
+                altura: '',
+                base: '',
+                boca: '',
+                capacidad: '',
+                peso: '',
+                largo: '',
+            });
+            setImageFile(null);
+            setPreviewUrl('');
+            document.querySelector('input[type="file"]').value = '';
+            setSearchValues({
+                search: '',
+                plantas: false,
+                macetas: false,
+                maceteros: false,
+                filtrado:'',});
+            // window.location.reload();
+        } catch (error) {
+            setErrorMessage('Hubo un error al guardar los datos. Por favor, inténtalo de nuevo.');
+        }
     };
 
+
     return (
-        //<div className='h-[20rem] w-[90%] mb-5 bg-white text-black rounded-md flex justify-center items-center'>
-            //<div className='text-xs'>
         <div className="flex items-center justify-center md:justify-between w-[90%]  rounded-md">
             <div className="bg-white text-black w-[20rem] h-fit  mx-2 p-4 rounded-lg shadow-lg relative max-w-lg ">  
                 <select
@@ -89,17 +118,17 @@ const DashBoard = () => {
                     <option value="macetas">Macetas</option>
                     <option value="maceteros">Maceteros</option>
                 </select>
-
+                {setErrorMessage && (<p className='h-fit text-rose-400'>{errorMessage}</p>)}
                 {newValues.category === 'plantas' && (
-                    <PlantModal newValues={newValues} content={{ category: 'plantas' }}
+                    <PlantModal key="plantas" dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'plantas' }}
                     handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>    
                 )}
                 {newValues.category === 'macetas' && (
-                    <MacetaModal newValues={newValues} content={{ category: 'macetas' }}
+                    <MacetaModal key="macetas" dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'macetas' }}
                     handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>    
                 )}
                 {newValues.category === 'maceteros' && (
-                    <MaceteroModal newValues={newValues} content={{ category: 'maceteros' }}
+                    <MaceteroModal key="maceteros" dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'maceteros' }}
                     handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>    
                 )}    
             </div>

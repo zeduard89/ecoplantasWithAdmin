@@ -47,7 +47,6 @@ const Admin = () => {
     const fetchFilteredData = async () => {
       try {
         const response = await fetchFilter(searchValues, token );
-        console.log(response.data.error)
         if(response.data.error){
           setLogoutMessage('Tu sesión ha expirado o ha habido un error. Por favor, inicia sesión nuevamente.');
           dispatch(adminToken(''));
@@ -84,7 +83,7 @@ const Admin = () => {
         </div>
         </>
       )}
-      <DashBoard/>
+      <DashBoard setSearchValues={setSearchValues} token={token} searchValues={searchValues}/>
       <SmallScreenFilter  searchValues={searchValues} handleChange={handleChange}/>
       {/* CARDS small-Screen*/}
       <div className="lg:hidden flex flex-row justify-center flex-wrap">

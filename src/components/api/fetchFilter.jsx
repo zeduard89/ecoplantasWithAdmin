@@ -12,7 +12,7 @@ const fetchFilter = async (filterData, token) => {
       body: JSON.stringify(filterData),
     });
     const data = await response.json();
-    
+
     if (data ) {
       return {data};
     } else {
