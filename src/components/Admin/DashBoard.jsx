@@ -139,7 +139,9 @@ const DashBoard = ({token, setSearchValues}) => {
                 )}    
             </div>
 
-            <div className='hidden md:block bg-white h-[20rem] w-full ml-10 rounded-lg '></div>
+            <div className='hidden md:block h-[20rem] w-[60%] ml-10 text-center  bg-white text-green-600 font-bold text-3xl  rounded-lg '>
+                 <h1 className='h-[100%] flex justify-center items-center'>DASHBOARD <br/> FROM ECOPLANTAS TEAM</h1>
+            </div>
         </div>
     );
 }
