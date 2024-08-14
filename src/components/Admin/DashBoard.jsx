@@ -4,6 +4,7 @@ import PlantModal from './CardModal/plantModal';
 import MacetaModal from './CardModal/MacetaModal';
 import MaceteroModal from './CardModal/MaceteroModal';
 import fetchUpload from '../api/fetchUpload';
+import validateDashboard from './validateDashboard'
 
 const DashBoard = ({token, setSearchValues}) => {
     const dispatch = useDispatch();
@@ -47,6 +48,14 @@ const DashBoard = ({token, setSearchValues}) => {
     };
 
     const handleSave = async () => {
+
+        const validationErrors = validateDashboard(newValues);
+        if (validationErrors) {
+            setErrorMessage(validationErrors);
+            setTimeout(() => {setErrorMessage('');}, 3000); 
+            return;
+        }
+
         const formData = new FormData();
         formData.append('title', newValues.title);
         formData.append('description', newValues.description);
