@@ -124,6 +124,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
          if (data) {
         const datosPosts = await fetchCatalogo();
         dispatch(addCatalogo(datosPosts));
+        onClose();
 
          } else {
              console.error('Error saving data:', data);

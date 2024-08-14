@@ -75,6 +75,9 @@ const DashBoard = ({token, setSearchValues}) => {
             }
 
             setSuccessMessage('Creación exitosa');
+
+            setTimeout(() => {setSuccessMessage('');}, 3000); 
+            
             setErrorMessage('');
             setNewValues({
                 title: '',
@@ -123,18 +126,17 @@ const DashBoard = ({token, setSearchValues}) => {
                     <option value="maceteros">Maceteros</option>
                 </select>
                 {setErrorMessage && (<p className='h-fit text-rose-400'>{errorMessage}</p>)}
-                {successMessage && <p className='h-fit text-green-400'>{successMessage}</p>}
 
                 {newValues.category === 'plantas' && (
-                    <PlantModal key="plantas" dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'plantas' }}
+                    <PlantModal key="plantas" successMessage={successMessage} dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'plantas' }}
                     handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>    
                 )}
                 {newValues.category === 'macetas' && (
-                    <MacetaModal key="macetas" dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'macetas' }}
+                    <MacetaModal key="macetas" successMessage={successMessage}  dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'macetas' }}
                     handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>    
                 )}
                 {newValues.category === 'maceteros' && (
-                    <MaceteroModal key="maceteros" dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'maceteros' }}
+                    <MaceteroModal key="maceteros" successMessage={successMessage} dashBoardKey={dashBoardKey} newValues={newValues} content={{ category: 'maceteros' }}
                     handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>    
                 )}    
             </div>

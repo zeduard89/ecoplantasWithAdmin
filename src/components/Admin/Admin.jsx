@@ -57,7 +57,7 @@ const Admin = () => {
       }
   };
     fetchFilteredData();
-  }, [searchValues, dispatch]);
+  }, [searchValues,isModalOpen, dispatch]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

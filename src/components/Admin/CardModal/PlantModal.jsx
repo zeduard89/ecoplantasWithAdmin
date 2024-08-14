@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PlantModal = ({dashBoardKey,content,errors = {}, newValues,handleFileChange,handleSave,handleChange, handleDelete}) => {
+const PlantModal = ({successMessage,dashBoardKey,content,errors = {}, newValues,handleFileChange,handleSave,handleChange, handleDelete}) => {
   return (
     <>
     {content.category === 'plantas' && (
@@ -38,10 +38,12 @@ const PlantModal = ({dashBoardKey,content,errors = {}, newValues,handleFileChang
           onChange={handleFileChange}
           className="mt-2"
           />
-          <div className='w-[90%] flex flex-row gap-2'>
+          <div className='w-[90%] flex flex-row gap-2 justify-center items-center'>
             <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                 Guardar
             </button>
+            {successMessage && <p className='h-fit text-green-400'>{successMessage}</p>}
+
             {!dashBoardKey && 
             <button onClick={handleDelete} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                 Borrar
