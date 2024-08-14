@@ -8,11 +8,15 @@ import validateModal from './validateModal';
 import fetchUpdate from '../../api/fetchUpdate';
 import fetchCatalogo from '../../api/fetchCatalogo';
 import fetchDelete from '../../api/fetchDelete';
-import { addCatalogo } from '../../../redux/catalogoSlice';
+import { addCatalogo, deleteItem } from '../../../redux/catalogoSlice';
+import { deleteItemFiltered } from '../../../redux/filterSilce';
 
 const CardModal = ({ isOpen, onClose, content }) => {
 
     const token = useSelector((state) => state.admin.token);
+
+
+
     const dispatch = useDispatch();
 
     const [newValues, setNewValues] = useState({
@@ -51,18 +55,23 @@ const CardModal = ({ isOpen, onClose, content }) => {
         }
       }, [content]);
 
+      useEffect(()=>{
+
+      },[fetchDelete])
+
     const handleDelete = async() =>{
       try {
-        const response = fetchDelete(content,token);
-        console.log(response)
+        await fetchDelete(content,token);
+        dispatch(deleteItem({ category: content.category, id: content.id }));
+        dispatch(deleteItemFiltered(content.id))
+        onClose(); 
         
       } catch (error) {
         
         console.error('Error Borrando:', data);
         onClose(); 
       };
-    }
-      
+    } 
 
     const handleChange = (e) => {
         const { name, value } = e.target;

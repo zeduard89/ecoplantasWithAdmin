@@ -11,7 +11,6 @@ const fetchDelete = async (content,token) => {
     } else if (content.category === 'maceteros') {
         url = `${VITE_API_BASE_URL}/maceterosRoute/deleteMaceteroById/${content.id}`;
     }
-    console.log(url)
     if (!url) {
         return { success: false, error: 'Categoria invalida' };
     }

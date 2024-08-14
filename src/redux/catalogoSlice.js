@@ -51,19 +51,30 @@ export const catalogoSlice = createSlice({
         incrementMaceterosL: (state, action) => {
             const { base } = action.payload;
             if (base !== undefined && base.includes('20')) {
-                state.maceteros20 += 1;
+                state.countMaceteros20 += 1;
             }else if(base !== undefined && base.includes('30')){
-                state.maceteros30 += 1;
+                state.countMaceteros30 += 1;
             }
         },
         decrementMaceterosL: (state, action) => {
             const { base } = action.payload;
-            if (base !== undefined && base.includes('20') && state.maceteros20 > 0) {
-                state.maceteros20 -= 1;
-            }else if(base !== undefined && base.includes('30') && state.maceteros30 > 0){
-                state.maceteros30 -= 1;
+            if (base !== undefined && base.includes('20') && state.countMaceteros20 > 0) {
+                state.countMaceteros20 -= 1;
+            }else if(base !== undefined && base.includes('30') && state.countMaceteros30 > 0){
+                state.countMaceteros30 -= 1;
             }
         },
+        deleteItem: (state, action) => {
+            const {category, id} = action.payload
+            if(category === 'plantas'){
+                state.plantas = state.plantas.filter(item => item.id !== id);
+            }else if (category === 'macetas'){
+                state.macetas = state.macetas.filter(item => item.id !== id);
+            } else if (category === 'maceteros'){
+                state.maceteros = state.maceteros.filter(item => item.id !== id);
+            }
+
+          },
         reset: (state) => {
             return initialState;
         },
@@ -76,6 +87,6 @@ export const catalogoSlice = createSlice({
     }
 })
 
-export const { addCatalogo, increment, decrement, incrementMaceterosL, decrementMaceterosL, reset, setPresupuesto } = catalogoSlice.actions;
+export const { addCatalogo, increment, decrement, incrementMaceterosL, decrementMaceterosL,deleteItem, reset, setPresupuesto } = catalogoSlice.actions;
 export default catalogoSlice.reducer;
 
