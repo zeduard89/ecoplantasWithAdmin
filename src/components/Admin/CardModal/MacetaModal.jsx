@@ -11,23 +11,23 @@ const MacetaModal = ({successMessage,dashBoardKey, errors = {} ,content, newValu
                     <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
                  )} 
             </div>
-          <label className='h-[0.5rem] mt-3  flex items-center pt-2'>Titulo:
+          <label className='h-[0.5rem] m-3  flex items-center pt-2'>Titulo:
               <input
               type="text"
               name="title"
               value={newValues.title}
               onChange={handleChange}
               placeholder={newValues.title}
-              className="h-[1.5rem] md:h-[1.2rem] md:w-[43%] w-[49%] p-2 md:ml-9 ml-2 border border-gray-300 rounded"
+              className="h-[1.5rem] md:h-[1.2rem] md:w-[43%] w-[49%] p-2 md:ml-9 m-2 border border-gray-300 rounded"
               /> 
           </label>
-          <label className='h-[5rem] md:h-[7rem] flex items-center pt-2'>Descripcion:
+          <label className='h-[5rem] md:h-[7rem] flex items-center'>Descripcion:
               <textarea
               name="description"
               value={newValues.description}
               onChange={handleChange}
               placeholder="Description"
-              className="h-[4rem] md:h-[5rem] w-[43%]  mt-2 p-2 ml-1 border border-gray-300 rounded"
+              className="h-[4rem] md:h-[5rem] w-[43%]  p-2 ml-1 border border-gray-300 rounded"
               rows="4"
               />
           </label> 

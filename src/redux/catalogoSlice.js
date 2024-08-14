@@ -18,7 +18,7 @@ export const catalogoSlice = createSlice({
     reducers: {
         addCatalogo: (state, action) => {
             const { macetas, plantas, maceteros, emptyCatalogo } = action.payload;
-            state.macetas = macetas || []; 
+            state.macetas = macetas || [];
             state.plantas = plantas || []; 
             state.maceteros = maceteros || [];   
             const maceteros20 = maceteros?.filter(macetero => {

@@ -22,7 +22,10 @@ const Catalogo = () => {
   const fetchPosts = useCallback(async () => {
     try {
       const datosPosts = await fetchCatalogo();
-      dispatch(addCatalogo(datosPosts));
+      if (datosPosts.macetas.length !== catalogo.macetas.length || datosPosts.plantas.length !== catalogo.plantas.length){
+        dispatch(reset());
+        dispatch(addCatalogo(datosPosts));
+      } 
     } catch (err) {
       console.log("Error", err);
     }
@@ -30,7 +33,7 @@ const Catalogo = () => {
 
   useEffect(() => {
       fetchPosts();
-  }, []);
+  }, [fetchPosts]);
   //----------------------------------------------------------
 
   const handleImageClick = (image) => {
@@ -41,13 +44,17 @@ const Catalogo = () => {
     setSelectedImage(null);
   };
 
+  const handleReset = () => {
+    dispatch(reset());
+  };
+
   return (
     <div className="my-[6rem] text-center">
       <h1 className="text-5xl font-bold text-center mb-16">CATALOGO</h1>
       <div className='flex flex-row-reverse mr-2 lg:mr-20'>
         {catalogo.emptyCatalogo &&
           <button className='hover:bg-green-200 bg-green-500 text-black font-bold p-[0.15rem] border-2 rounded-md border-slate-600'
-            onClick={fetchPosts}> Reset
+          onClick={handleReset}> Reset
           </button>
         }
         
