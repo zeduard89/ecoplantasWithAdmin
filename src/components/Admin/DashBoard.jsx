@@ -10,16 +10,16 @@ const DashBoard = ({token, setSearchValues}) => {
     const dashBoardKey = true
 
     const [newValues, setNewValues] = useState({
-        title: 'Title',
-        description: 'Description',
+        title: '',
+        description: '',
         imageUrl: '',
         category: 'plantas',
-        altura: 'Altura',
-        base: 'Base',
-        boca: 'Boca',
-        capacidad: 'Capacidad',
-        peso: 'Peso',
-        largo: 'Largo',
+        altura: '0',
+        base: '0',
+        boca: '0',
+        capacidad: '0',
+        peso: '0',
+        largo: '0',
     });
     const [imageFile, setImageFile] = useState(null);
     const [previewUrl, setPreviewUrl] = useState('');

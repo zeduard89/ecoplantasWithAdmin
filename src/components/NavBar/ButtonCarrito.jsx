@@ -8,8 +8,8 @@ const ButtonCarrito = ({onScroll }) => {
     const navigate = useNavigate();
 
     const { plantas, macetas  } = useSelector((state) => state.catalogo);
-    const maceteros20 = useSelector((state)=> state.catalogo.maceteros20);
-    const maceteros30 = useSelector((state)=>state.catalogo.maceteros30);
+    const maceteros20 = useSelector((state)=> state.catalogo.countMaceteros20);
+    const maceteros30 = useSelector((state)=>state.catalogo.countMaceteros30);
 
     let plantsCount = Object.values(plantas).reduce((total, planta) => {
       const quantity = planta.cuantity || 0;

@@ -1,11 +1,16 @@
 import React from 'react'
 
-const PlantModal = ({dashBoardKey,content, newValues,handleFileChange,handleSave,handleChange, handleDelete}) => {
+const PlantModal = ({dashBoardKey,content,errors = {}, newValues,handleFileChange,handleSave,handleChange, handleDelete}) => {
   return (
     <>
     {content.category === 'plantas' && (
       <div className='flex flex-col'>
+          <div className='flex flex-row justify-center items-center'>
           <img src={content.imageUrl} alt={content.imageUrl} className="w-[9rem] h-auto rounded-md" />
+          {errors.title && (
+            <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
+          )} 
+          </div>
           <label className='flex items-center pt-2'>Titulo:
               <input
               type="text"
@@ -16,6 +21,7 @@ const PlantModal = ({dashBoardKey,content, newValues,handleFileChange,handleSave
               className="w-[64%] mt-2 p-2 ml-12 border border-gray-300 rounded"
               /> 
           </label>
+          
           <label className='flex items-center pt-2'>Descripcion:
               <textarea
               name="description"
@@ -32,7 +38,7 @@ const PlantModal = ({dashBoardKey,content, newValues,handleFileChange,handleSave
           onChange={handleFileChange}
           className="mt-2"
           />
-          <div className='w-[80%]'>
+          <div className='w-[90%] flex flex-row gap-2'>
             <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                 Guardar
             </button>
@@ -40,7 +46,7 @@ const PlantModal = ({dashBoardKey,content, newValues,handleFileChange,handleSave
             <button onClick={handleDelete} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                 Borrar
             </button> 
-            }        
+            }   
           </div>        
         </div>
       )}

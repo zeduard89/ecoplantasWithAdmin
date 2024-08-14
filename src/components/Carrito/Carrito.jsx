@@ -15,9 +15,7 @@ const emailJsUserId = import.meta.env.VITE_EMAILJS_USER_ID;
 const Carrito = ({onScroll}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { plantas, macetas  } = useSelector((state) => state.catalogo);
-  const maceteros20 = useSelector((state)=> state.catalogo.maceteros20);
-  const maceteros30 = useSelector((state)=>state.catalogo.maceteros30);
+  const { plantas, macetas, countMaceteros20: maceteros20, countMaceteros30: maceteros30 } = useSelector((state) => state.catalogo);
 
   const form = useRef();
   const [sent, setSent] = useState(null);

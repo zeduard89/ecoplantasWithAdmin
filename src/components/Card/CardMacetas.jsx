@@ -4,7 +4,7 @@ import { increment, decrement, reset } from '../../redux/catalogoSlice';
 import { useLocation } from 'react-router-dom';
 
 const CardMacetas = ({id, title, altura,base,boca,capacidad,imageUrl,peso,description,category,openModal}) => {
-        
+
     const dispatch = useDispatch();
     const location = useLocation();
     const isAdminPage = location.pathname === '/admin'; 

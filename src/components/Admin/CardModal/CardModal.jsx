@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PlantModal from './plantModal';
 import MacetaModal from './MacetaModal';
 import MaceteroModal from './MaceteroModal';
+import validateModal from './validateModal';
 import fetchUpdate from '../../api/fetchUpdate';
 import fetchCatalogo from '../../api/fetchCatalogo';
 import fetchDelete from '../../api/fetchDelete';
@@ -29,6 +30,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
       });
       const [imageFile, setImageFile] = useState(null);
       const [previewUrl, setPreviewUrl] = useState('');
+      const [errors, setErrors] = useState({});
 
     useEffect(() => {
         if (content) {
@@ -84,6 +86,12 @@ const CardModal = ({ isOpen, onClose, content }) => {
       };
 
       const handleSave = async () => {
+
+        const validationErrors = validateModal(newValues);
+        if (Object.keys(validationErrors).length > 0) {
+          setErrors(validationErrors);
+          return;
+        }
         const formData = new FormData();
         formData.append('id', newValues.id);
         formData.append('title', newValues.title);
@@ -111,6 +119,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
          } else {
              console.error('Error saving data:', data);
          }
+        setErrors({});
         onClose(); 
       };
 
@@ -122,9 +131,9 @@ const CardModal = ({ isOpen, onClose, content }) => {
           Close
         </button>
 
-        <PlantModal content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
-        <MacetaModal content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
-        <MaceteroModal content={content} newValues={newValues} handleDelete={handleDelete}  handleFileChange={handleFileChange} handleSave={handleSave}  handleChange={handleChange}/>
+        <PlantModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+        <MacetaModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+        <MaceteroModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete}  handleFileChange={handleFileChange} handleSave={handleSave}  handleChange={handleChange}/>
         
 
 

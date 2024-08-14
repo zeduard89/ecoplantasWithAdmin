@@ -82,7 +82,7 @@ const Contacto = () => {
                   onChange={handleChange}
                   className="px-2 py-3 bg-white w-full text-gray-800 text-sm border-b border-gray-300 focus:border-green-600 outline-none"
                 />
-                {errors.user_name && <p className="absolute text-red-600 text-sm">{errors.user_name}</p>}
+                {errors.title && <p className="absolute text-red-600 text-sm">{errors.title}</p>}
               </div>
 
               <div className="relative">

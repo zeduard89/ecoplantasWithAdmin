@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { decrementMaceterosL, incrementMaceterosL} from '../../redux/catalogoSlice';
 import Carrousel from '../Home/Carrousel';
 
-const CardMaceteros = ({maceteros }) => {
-
+const CardMaceteros = ({maceteros , maceteroType }) => {
     const imgArray = [];
         
     const dispatch = useDispatch();
-    let maceteros20Count = useSelector((state) => state.catalogo.maceteros20);
-    let maceteros30Count = useSelector((state) => state.catalogo.maceteros30);
+    let countMaceteros20 = useSelector((state) => state.catalogo.countMaceteros20);
+    let countMaceteros30 = useSelector((state) => state.catalogo.countMaceteros30);
     // obtengo un array filtrado (todos mismo dato:BASE) de elementos por cada card
     // por eso con que el primero coincida es suficiente
+    if (maceteros.length === 0) {
+      return <div></div>;
+    }
     const base = maceteros[0].base || "";
     const handleIncrement = () => {
         dispatch(incrementMaceterosL({ base }));
@@ -35,7 +37,7 @@ const CardMaceteros = ({maceteros }) => {
     <div className='relative text-center rounded-md p-7 '>
         
         <div className='absolute z-50 top-10 right-10 font-bold bg-green-700/80 border-2 border-gray-500 w-7 h-7 rounded flex items-center justify-center'>
-            {base.includes('20')?maceteros20Count:maceteros30Count}
+            {base.includes('20')?countMaceteros20:countMaceteros30}
         </div>
         <div className='h-[20rem] rounded-t-md object-cover'>
           <Carrousel image={imgArray} />

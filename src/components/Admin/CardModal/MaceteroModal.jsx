@@ -1,11 +1,16 @@
 import React from 'react'
 
-const MaceteroModal = ({dashBoardKey, content, newValues,handleFileChange,handleSave,handleChange,handleDelete}) => {
+const MaceteroModal = ({dashBoardKey, errors = {}, content, newValues,handleFileChange,handleSave,handleChange,handleDelete}) => {
   return (
     <>
     {content.category === 'maceteros' && (
           <div className='flex flex-col text-xs'>
-          <img src={content.imageUrl} alt={content.imageUrl} className="w-[10rem] rounded-md" />
+          <div className='flex flex-row justify-center items-center'>
+            <img src={content.imageUrl} alt={content.imageUrl} className="w-[10rem] rounded-md" />
+            {errors.title && (
+              <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
+            )} 
+          </div>
           <label className='flex items-center pt-2'>Titulo:
               <input
               type="text"
@@ -32,7 +37,6 @@ const MaceteroModal = ({dashBoardKey, content, newValues,handleFileChange,handle
                 Base:
                 <select
                     name="base"
-                    value={newValues.base}
                     onChange={handleChange}
                     className="w-[60%] md:w-[60%] h-8 mt-2 p-2 ml-3 md:ml-3 border border-gray-300 rounded"
                 >
@@ -69,7 +73,7 @@ const MaceteroModal = ({dashBoardKey, content, newValues,handleFileChange,handle
           onChange={handleFileChange}
           className="mt-2"
           />
-          <div className='w-[80%]'>
+          <div className='w-[90%] flex flex-row gap-2'>
             <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                 Guardar
             </button> 

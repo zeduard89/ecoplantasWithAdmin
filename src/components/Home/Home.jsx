@@ -1,8 +1,4 @@
 import React, { useEffect, useCallback } from 'react';
-//Update catalogo
-import { useDispatch ,useSelector } from "react-redux";
-import fetchCatalogo from '../api/fetchCatalogo';
-import { addCatalogo } from '../../redux/catalogoSlice';
 
 //Components
 import Carrousel from './Carrousel';
@@ -14,31 +10,6 @@ import imagesCarrousel from '../Utils/imges/carrousel/carrouselLoader'
 
 
 const Home = () => {
-
-  const catalogo = useSelector((state) => state.catalogo);
-  const dispatch = useDispatch();
-
-
-
-  const fetchPosts = useCallback(async () => {
-    try {
-      const datosPosts = await fetchCatalogo();
-      dispatch(addCatalogo(datosPosts));
-    } catch (err) {
-      console.log("Error", err);
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (catalogo.plantas.length === 0 && 
-        catalogo.macetas.length === 0 && 
-        catalogo.maceteros.length === 0
-        ) {
-      fetchPosts();
-    }
-  }, [fetchPosts, catalogo]);
-
-
 
   return (
     <div>

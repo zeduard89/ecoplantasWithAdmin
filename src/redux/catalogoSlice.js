@@ -4,9 +4,11 @@ const initialState = {
     macetas: [],  
     plantas: [],  
     maceteros: [],
-    maceteros20:0,
-    maceteros30:0,
-
+    arrayMaceteros20:[],
+    arrayMaceteros30:[],
+    countMaceteros20:0,
+    countMaceteros30:0,
+    emptyCatalogo:false
 }; 
 
 export const catalogoSlice = createSlice({
@@ -15,10 +17,20 @@ export const catalogoSlice = createSlice({
     // Create reducers
     reducers: {
         addCatalogo: (state, action) => {
-            const { macetas, plantas, maceteros } = action.payload;
+            const { macetas, plantas, maceteros, emptyCatalogo } = action.payload;
             state.macetas = macetas || []; 
             state.plantas = plantas || []; 
             state.maceteros = maceteros || [];   
+            const maceteros20 = maceteros?.filter(macetero => {
+                return macetero.base.includes('20');
+              });
+            state.arrayMaceteros20 = maceteros20 || [];
+              const maceteros30 = maceteros?.filter(macetero => {
+                return macetero.base.includes('30');
+              });
+            state.arrayMaceteros30 = maceteros30 || [];
+            state.emptyCatalogo = emptyCatalogo;
+            
         },
         increment: (state, action) => {
             const { title, category } = action.payload;

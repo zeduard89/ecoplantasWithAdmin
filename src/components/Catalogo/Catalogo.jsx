@@ -29,35 +29,9 @@ const Catalogo = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (catalogo.plantas.length === 0 && 
-        catalogo.macetas.length === 0 && 
-        catalogo.maceteros.length === 0
-        ) {
       fetchPosts();
-    }
-  }, [fetchPosts, catalogo]);
+  }, []);
   //----------------------------------------------------------
-
-  const fetchPostsRefresh = useCallback(async () => {
-    try {
-      const datosPosts = await fetchCatalogo();
-      dispatch(reset())
-      dispatch(addCatalogo(datosPosts));
-    } catch (err) {
-      console.log("Error", err);
-    }
-  }, [dispatch]);
-
-
-
-  //Filtro los maceteros 20x20 y 20x30
-  const maceteros20 = catalogo.maceteros.filter(macetero => {
-    return macetero.base.includes('20');
-  });
-  const maceteros30 = catalogo.maceteros.filter(macetero => {
-    return macetero.base.includes('30');
-  });
-
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -67,13 +41,16 @@ const Catalogo = () => {
     setSelectedImage(null);
   };
 
-
   return (
     <div className="my-[6rem] text-center">
       <h1 className="text-5xl font-bold text-center mb-16">CATALOGO</h1>
       <div className='flex flex-row-reverse mr-2 lg:mr-20'>
-        <button className='hover:bg-green-200 bg-green-500 text-black font-bold p-[0.15rem] border-2 rounded-md border-slate-600'
-        onClick={()=>fetchPostsRefresh()}> Reset</button>
+        {catalogo.emptyCatalogo &&
+          <button className='hover:bg-green-200 bg-green-500 text-black font-bold p-[0.15rem] border-2 rounded-md border-slate-600'
+            onClick={fetchPosts}> Reset
+          </button>
+        }
+        
       </div>
       
         <div className=" flex flex-col justify-center">
@@ -82,6 +59,7 @@ const Catalogo = () => {
             <h1 className=" text-3xl md:text-4xl lg:text-4xl text-white font-bold">
               PLANTAS
             </h1>
+            {catalogo.plantas.length === 0 && <div>No hay Plantas disponibles</div>}
             <div className="flex flex-row justify-center flex-wrap">
               {catalogo.plantas.map((planta, index) => (
                 <div key={index}>
@@ -96,6 +74,7 @@ const Catalogo = () => {
             <h1 className="mb-6 mt-6 text-3xl md:text-4xl lg:text-4xl text-white font-bold">
               MACETAS
             </h1>
+            {catalogo.macetas.length === 0 && <div>No hay Macetas disponibles</div>}
             <div className="flex flex-row justify-center flex-wrap">
               {catalogo.macetas.map((maceta, index) => (
                 <div key={index}>
@@ -124,10 +103,13 @@ const Catalogo = () => {
             <h1 className="mb-6 mt-6  text-3xl md:text-4xl lg:text-4xl text-white font-bold">
               MACETEROS
             </h1>
+            {catalogo.maceteros.length === 0? <div>No hay Maceteros disponibles</div>
+            :(
             <div className="lg:grid lg:grid-cols-2"> 
-              <CardMaceteros maceteros={maceteros20} />
-              <CardMaceteros maceteros={maceteros30} />
+              <CardMaceteros maceteros={catalogo.arrayMaceteros20} maceteroType={'20'} />
+              <CardMaceteros maceteros={catalogo.arrayMaceteros30} maceteroType={'30'} />
             </div>
+            )}
           </div>
 
         </div>

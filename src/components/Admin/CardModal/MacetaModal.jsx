@@ -1,11 +1,16 @@
 import React from 'react'
 
-const MacetaModal = ({dashBoardKey ,content, newValues,handleFileChange,handleSave,handleDelete,handleChange}) => {
+const MacetaModal = ({dashBoardKey, errors = {} ,content, newValues,handleFileChange,handleSave,handleDelete,handleChange}) => {
     return (
     <>
             {content.category === 'macetas' && (
           <div className='flex flex-col text-xs'>
-          <img src={content.imageUrl} alt={content.imageUrl} className="md:w-[10rem] w-[6rem] h-auto rounded-md" />
+            <div className='flex flex-row justify-center items-center'>
+                <img src={content.imageUrl} alt={content.imageUrl} className="md:w-[10rem] w-[6rem] h-auto rounded-md" />
+                {errors.title && (
+                    <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
+                 )} 
+            </div>
           <label className='h-[0.5rem] mt-3  flex items-center pt-2'>Titulo:
               <input
               type="text"
@@ -85,7 +90,7 @@ const MacetaModal = ({dashBoardKey ,content, newValues,handleFileChange,handleSa
           onChange={handleFileChange}
           className="mt-2"
           />
-          <div className='w-[80%]'>
+          <div className='w-[90%] flex flex-row gap-2'>
             <button onClick={handleSave} className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
                 Guardar
             </button> 
