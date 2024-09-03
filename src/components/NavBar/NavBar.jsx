@@ -103,9 +103,9 @@ function NavBar({ onScroll }) {
             <button
               className='btnNav text-[1rem] sm:text-lg lg:text-xl sm:w-30 w-24 h-8 sm:hover:text-blue-700'
               onClick={() => {
-                closeMenu(); // Primero, llama a la función closeMenu
+                closeMenu();
                 navigate('/');
-                onScroll('inicio'); // Luego, llama a la función onScroll con el parámetro 'about-me'
+                onScroll('inicio');
               }}
             >
               Inicio
@@ -115,7 +115,7 @@ function NavBar({ onScroll }) {
             <button
               className='btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:w-40 w-24 h-8 sm:hover:text-blue-700'
               onClick={() => {
-                closeMenu(); // Primero, llama a la función closeMenu
+                closeMenu(); 
                 navigate('/historia'); 
                 onScroll('inicio')
               }}
@@ -127,7 +127,7 @@ function NavBar({ onScroll }) {
             <button
               className='btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:w-30 w-24 h-8 sm:hover:text-blue-700 mr-1'
               onClick={() => {
-                closeMenu(); // Primero, llama a la función closeMenu
+                closeMenu();
                 navigate('/contacto');
                 onScroll('inicio')              }}
             >
@@ -138,7 +138,7 @@ function NavBar({ onScroll }) {
             <button
               className='btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:w-30 w-24 h-8 sm:hover:text-blue-700'
               onClick={() => {
-                closeMenu(); // Primero, llama a la función closeMenu
+                closeMenu();
                 navigate('/catalogo');
                 onScroll('inicio')              }}
             >

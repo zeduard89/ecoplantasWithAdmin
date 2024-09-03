@@ -44,7 +44,7 @@ const Admin = ({ onScroll }) => {
         });
         setErrors({});
         navigate('/admin');
-        onScroll();
+        onScroll('inicio');
       } else {
         setErrors({ general: response.errorMessage || 'Fallo en el Logeo.' });
       }
@@ -57,7 +57,7 @@ const Admin = ({ onScroll }) => {
   const handleButtonClick = () => {
     if (adminInfo.token) {
       navigate('/admin');
-      onScroll();
+      onScroll('inicio');
       setIsModalOpen(false);
       return;
     }

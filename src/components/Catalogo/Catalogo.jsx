@@ -44,21 +44,10 @@ const Catalogo = () => {
     setSelectedImage(null);
   };
 
-  const handleReset = () => {
-    dispatch(reset());
-  };
-
   return (
     <div className="my-[6rem] text-center">
       <h1 className="text-5xl font-bold text-center mb-16">CATALOGO</h1>
-      <div className='flex flex-row-reverse mr-2 lg:mr-20'>
-        {catalogo.emptyCatalogo &&
-          <button className='hover:bg-green-200 bg-green-500 text-black font-bold p-[0.15rem] border-2 rounded-md border-slate-600'
-          onClick={handleReset}> Reset
-          </button>
-        }
-        
-      </div>
+      
       
         <div className=" flex flex-col justify-center">
           {/* Plantas */}

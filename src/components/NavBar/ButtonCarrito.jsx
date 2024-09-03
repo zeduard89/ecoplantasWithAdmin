@@ -29,7 +29,7 @@ const ButtonCarrito = ({onScroll }) => {
     className='h-8  relative btnNav text-white text-[1rem] sm:text-lg lg:text-xl  sm:hover:text-blue-700'
     onClick={() => {
       navigate('/Carrito');
-      onScroll('servicios'); // Luego, llama a la función onScroll con el parámetro 'projects'
+      onScroll('inicio'); // Luego, llama a la función onScroll con el parámetro 'projects'
     }}
   >
   <img src={carrito} alt="buttomCarrito" className='h-[2.7rem] w-[3.5rem] m-2' />

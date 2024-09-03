@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect} from 'react';
 import emailjs from 'emailjs-com';
 import validateForm from './validateForm'
+import map from '../Utils/contacto/mapa.png'
 
 // Variables de Entorno
 const emailJsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -14,8 +15,8 @@ const VITE_USER_EMAIL = import.meta.env.VITE_USER_EMAIL;
 
 const Contacto = () => {
   const form = useRef();
-  const [sent, setSent] = useState(null); // Estado para mensajes de éxito o error
-  const [errors, setErrors] = useState({}); // Estado para almacenar mensajes de error
+  const [sent, setSent] = useState(null);
+  const [errors, setErrors] = useState({}); 
   const [formValues, setFormValues] = useState({
     user_name: '',
     user_direccion: '',
@@ -30,7 +31,6 @@ const Contacto = () => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
-
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -57,9 +57,10 @@ const Contacto = () => {
         setErrors({});
       }, (error) => {
         console.log(error.text);
-        setSent(false); // Mostrar mensaje de error
+        setSent(false);
       });
   };
+
 
   return (
     <div>
@@ -198,9 +199,10 @@ const Contacto = () => {
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1644.1351711680384!2d-58.76258300000001!3d-34.49603!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc99ac31c1b845%3A0x130e063a9e0fc855!2sVivero%20San%20Ignacio!5e0!3m2!1ses-419!2sar!4v1721862767439!5m2!1ses-419!2sar"
             className="left-0 top-0 h-full w-full rounded-t-lg lg:rounded-tr-none lg:rounded-bl-lg"
-            frameBorder="0" allowFullScreen>
+           allowFullScreen>
           </iframe>
         </div>
+        
       </div>
     </div>
   );
