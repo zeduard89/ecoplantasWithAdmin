@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PlantModal from './plantModal';
+import PlantModal from './PlantModal';
 import MacetaModal from './MacetaModal';
 import MaceteroModal from './MaceteroModal';
 import validateModal from './validateModal';
