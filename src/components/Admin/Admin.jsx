@@ -7,7 +7,7 @@ import fetchFilter from '../api/fetchFilter'
 import CardPlantas from '../Card/CardPlantas';
 import CardMacetas from '../Card/CardMacetas'
 import CardMaceteroUnit from '../Card/CardMaceteroUnit'
-import BigScreenFilter from './bigScreenFilter';
+import BigScreenFilter from './BigScreenFilter';
 import SmallScreenFilter from './SmallScreenFilter';
 import CardModal from './CardModal/CardModal';
 import DashBoard from './DashBoard';
