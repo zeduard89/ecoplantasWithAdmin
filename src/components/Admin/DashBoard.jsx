@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PlantModal from './CardModal/plantModal';
+import PlantModal from './CardModal/PlantModal';
 import MacetaModal from './CardModal/MacetaModal';
 import MaceteroModal from './CardModal/MaceteroModal';
 import fetchUpload from '../api/fetchUpload';
