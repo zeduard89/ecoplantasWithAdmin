@@ -95,13 +95,13 @@ function NavBar({ onScroll }) {
       >
         <a className='hidden sm:flex items-center' href="https://www.ecoplantas.com.ar/">
           <img className="h-[2.2rem] w-[2.2rem] m-[1rem] rounded-lg" src={logo} alt="cv" />
-          <h2 className='hidden md:block text-2xl'>Eco Plantas</h2>
+          <h2 className='hidden md:block text-white text-2xl'>Eco Plantas</h2>
         </a>
 
         <ul className="bg-slate-800 divide-gray-100 sm:bg-transparent flex flex-col sm:flex-row text-center justify-center rounded-md border-2 sm:border-none border-slate-300">
           <li className='hover:bg-gray-500 sm:hover:bg-transparent w-full rounded-md'>
             <button
-              className='btnNav text-[1rem] sm:text-lg lg:text-xl sm:w-30 w-24 h-8 sm:hover:text-blue-700'
+              className='btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:w-30 w-24 h-8 sm:hover:text-blue-700'
               onClick={() => {
                 closeMenu();
                 navigate('/');
@@ -125,17 +125,6 @@ function NavBar({ onScroll }) {
           </li>
           <li className='hover:bg-gray-500 sm:hover:bg-transparent w-full rounded-md'>
             <button
-              className='btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:w-30 w-24 h-8 sm:hover:text-blue-700 mr-1'
-              onClick={() => {
-                closeMenu();
-                navigate('/contacto');
-                onScroll('inicio')              }}
-            >
-              Contacto
-            </button>
-          </li>
-          <li className='hover:bg-gray-500 sm:hover:bg-transparent w-full rounded-md'>
-            <button
               className='btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:w-30 w-24 h-8 sm:hover:text-blue-700'
               onClick={() => {
                 closeMenu();
@@ -143,6 +132,17 @@ function NavBar({ onScroll }) {
                 onScroll('inicio')              }}
             >
               Catálogo
+            </button>
+          </li>
+          <li className='hover:bg-gray-500 sm:hover:bg-transparent w-full rounded-md'>
+            <button
+              className='btnNav text-white text-[1rem] sm:text-lg lg:text-xl sm:w-30 w-24 h-8 sm:hover:text-blue-700 mr-1'
+              onClick={() => {
+                closeMenu();
+                navigate('/contacto');
+                onScroll('inicio')              }}
+            >
+              Contacto
             </button>
           </li>
         </ul>

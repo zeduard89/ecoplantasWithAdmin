@@ -34,7 +34,7 @@ function App() {
         </div>
           
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home onScroll={handleScroll}/>} />
             <Route path="/historia" element={<Historia/>} />
             <Route path="/catalogo" element={<Catalogo/>} />
             <Route path="/carrito" element={<Carrito onScroll={handleScroll}/>} />

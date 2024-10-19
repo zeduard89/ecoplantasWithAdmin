@@ -197,10 +197,11 @@ const Contacto = () => {
         {/* MAPA */}
         <div className="z-10 relative h-full max-md:min-h-[350px]">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1644.1351711680384!2d-58.76258300000001!3d-34.49603!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc99ac31c1b845%3A0x130e063a9e0fc855!2sVivero%20San%20Ignacio!5e0!3m2!1ses-419!2sar!4v1721862767439!5m2!1ses-419!2sar"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d210146.75954489957!2d-58.598105851255106!3d-34.61571293647776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca3b4ef90cbd%3A0xa0b3812e88e88e87!2sBuenos%20Aires%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1729300981563!5m2!1ses-419!2sar"
             className="left-0 top-0 h-full w-full rounded-t-lg lg:rounded-tr-none lg:rounded-bl-lg"
            allowFullScreen>
           </iframe>
+          
         </div>
         
       </div>

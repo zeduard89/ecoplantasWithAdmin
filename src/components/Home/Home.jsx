@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //Components
 import Carrousel from './Carrousel';
@@ -9,7 +10,9 @@ import images from '../Utils/imges/cards/imageLoader'
 import imagesCarrousel from '../Utils/imges/carrousel/carrouselLoader'
 
 
-const Home = () => {
+const Home = ({onScroll}) => {
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -51,17 +54,17 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start justify-center">
           <div className="col-span-1 flex flex-col items-center mb-3">
             <Card image={images.macetas} />
-            <h1 className="m-5 text-2xl font-semibold">Macetas</h1>
+            <h1 className="m-5 text-2xl font-semibold">Alquiler</h1>
             <h3 className="w-[85%] text-center text-pretty">
-              Ofrecemos una amplia variedad de macetas, ideales para decorar cualquier espacio. 
+              Ofrecemos una amplia variedad de macetas y plantas, ideales para decorar cualquier espacio. 
               Desde macetas pequeñas para interiores hasta grandes jardineras para exteriores.
             </h3>
           </div>
           <div className="col-span-1 flex flex-col items-center mb-6">
             <Card image={images.plantas} />
-            <h1 className="m-5 text-2xl font-semibold">Plantas</h1>
+            <h1 className="m-5 text-2xl font-semibold">Venta</h1>
             <h3 className="w-[85%] text-center text-pretty">
-              Disponemos de plantas de todos los tamaños y tipos, perfectas para bodas, fiestas temáticas, conferencias entre otros eventos.
+            Explora nuestra amplia colección de plantas y macetas en distintos tamaños y estilos. Tenemos opciones ideales para embellecer tu hogar, oficina o darle un toque especial a cualquier evento.
             </h3>
           </div>
           <div className="col-span-1 flex flex-col items-center">
@@ -70,8 +73,19 @@ const Home = () => {
             <h3 className="w-[85%] text-center text-pretty">
             Ofrecemos servicios completos de asesoramiento. Nuestro equipo te guiará en la selección de las plantas adecuadas para tu espacio, asegurando que siempre luzcan perfectas.
             </h3>
-          </div>
+          </div>  
         </div>
+
+        <button type="button" 
+        className="flex justify-center items-center h-full w-fit text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-2xl px-5 py-2.5 m-5 mt-20"
+        onClick={() => {
+            navigate('/catalogo');
+            onScroll('inicio');
+              }}>
+            Selecciona tu pedido
+        </button>
+
+
       </div>
 
     </div>

@@ -5,7 +5,7 @@
 :root {
   font-family: 'MainFont';
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: #1F1F1F;
   background-color: #D9D4C9;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
