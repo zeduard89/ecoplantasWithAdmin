@@ -52,7 +52,7 @@ const Catalogo = () => {
         <div className=" flex flex-col justify-center">
           {/* Plantas */}
           <div>
-            <h1 className=" text-3xl md:text-4xl lg:text-4xl text-white font-bold">
+            <h1 className=" text-3xl md:text-4xl lg:text-4xl text-gray-700 font-bold">
               PLANTAS
             </h1>
             {catalogo.plantas.length === 0 && <div>No hay Plantas disponibles</div>}
@@ -67,7 +67,7 @@ const Catalogo = () => {
 
           {/* Macetas */}
           <div>
-            <h1 className="mb-6 mt-6 text-3xl md:text-4xl lg:text-4xl text-white font-bold">
+            <h1 className="mb-6 mt-6 text-3xl md:text-4xl lg:text-4xl text-gray-700 font-bold">
               MACETAS
             </h1>
             {catalogo.macetas.length === 0 && <div>No hay Macetas disponibles</div>}
@@ -96,7 +96,7 @@ const Catalogo = () => {
           </div>
 
           <div>
-            <h1 className="mb-6 mt-6  text-3xl md:text-4xl lg:text-4xl text-white font-bold">
+            <h1 className="mb-6 mt-6  text-3xl md:text-4xl lg:text-4xl text-gray-700 font-bold">
               MACETEROS
             </h1>
             {catalogo.maceteros.length === 0? <div>No hay Maceteros disponibles</div>

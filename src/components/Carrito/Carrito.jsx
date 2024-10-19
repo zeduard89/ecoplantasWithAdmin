@@ -88,13 +88,20 @@ const Carrito = ({onScroll}) => {
   return (
     <div className='my-[8rem] xl:h-full'>
       <h1 className='my-10 text-center text-3xl md:text-4xl lg:text-4xl font-bold'>PEDIDO A COTIZAR</h1>
+      <p className='font-bold mx-[5rem] md:mx-[10rem] lg:mx-[15rem]'>
+        Seleccione la cantidad que desea ,de nuestra variedad de plantas macetas y maceteros,
+        con los botones (+) y (-). Podra observar la cantidad de elementos seleccionados 
+         en la parte superior derecha de la pagina dentro del carrito.
+        Para finalizar su compra haga click en el carrito y vera el resumen de su seleccion, 
+        complete sus datos y envie el formulario dando click en "A cotizar"
+        </p>
       <div className="mx-auto h-[20rem] w-[60%] text-left pl-2 bg-white text-black mt-4 rounded-md overflow-y-auto">
         {(filteredPlantas.length == 0 && filteredMacetas.length == 0 && maceteros20 == 0 && maceteros30 == 0) ? (
             <button className='flex justify-center items-center	h-full w-full text-lime-500'
             onClick={() => {
                 navigate('/catalogo');
                 onScroll('inicio')              }}
-                >Selecciona tu pedido</button>
+                >Haga su Pedido</button>
         ) : (
           <>
             {filteredPlantas.map((planta, index) => (

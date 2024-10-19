@@ -22,9 +22,9 @@ const Home = ({onScroll}) => {
         <div className='h-[40rem]'>
           <Carrousel image={imagesCarrousel}/>
         </div>
-        <div className='bg-black/[.2] z-40 h-[40rem] w-full absolute inset-0 flex flex-col items-center justify-center  text-white'>
+        <div className='bg-black/[.4] z-40 h-[10rem] w-full mt-[15rem] absolute inset-0 flex flex-col items-center justify-center  text-white'>
           <h1 className='text-center text-white text-7xl font-bold mb-2'>Eco Plantas</h1>
-          <h2 className='text-center text-white text-3xl'>Alquiler de plantas para eventos.</h2>
+          <h2 className='text-center text-white text-3xl'>Alquiler y Venta de plantas para eventos.</h2>
         </div>
       </div>
 
@@ -32,7 +32,7 @@ const Home = ({onScroll}) => {
       <div className="w-full mt-5 text-center">
         <div className='p-4 grid grid-cols-1 md:grid-cols-2 gap-4 items-center'>
           <div className="col-span-1">
-            <h1 className=" mb-8  text-3xl xl:text-5xl	font-bold	">ALQUILER DE FLORES Y PLANTAS PARA EVENTOS</h1>
+            <h1 className=" mb-8  text-3xl xl:text-5xl	font-bold	">Transforma Tu Evento con Nuestro Servicio</h1>
             <h3 className='mb-3'>
               En Eco Plantas, nos especializamos en proporcionar una experiencia única a través del alquiler de flores y plantas para todo tipo de eventos. Desde bodas elegantes hasta celebraciones corporativas, nuestras decoraciones verdes añadirán un toque fresco y vibrante a tu ocasión especial.<br/><br/>
               Nuestro compromiso con la calidad y la atención al detalle asegura que cada planta y arreglo floral esté cuidadosamente seleccionado para realzar la estética de tu evento. Permítenos transformar tu espacio en un entorno mágico y lleno de vida.
@@ -82,7 +82,7 @@ const Home = ({onScroll}) => {
             navigate('/catalogo');
             onScroll('inicio');
               }}>
-            Selecciona tu pedido
+            Haga su Pedido
         </button>
 
 
