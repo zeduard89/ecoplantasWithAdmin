@@ -62,7 +62,7 @@ const CardPlantas = ({ id, title, description, imageUrl, category ,openModal }) 
           <h1 className='h-[2.5rem] text-white flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
             {title}
           </h1>
-          <h4 className='h-12 text-balance overflow-hidden line-clap-2 bg-green-700/20 p-2  text-[0.79rem] md:text-sm lg:text-sm '>
+          <h4 className='h-12 text-balance overflow-hidden text-ellipsis line-clap-3 bg-green-700/20 p-2  text-[0.79rem] md:text-sm lg:text-sm '>
             {truncatedDescription}
           </h4>
           <button onClick={openModalCatalogo} className='h-10 w-full pb-2 text-balance overflow-hidden font-bold bg-green-700/20  rounded-b-md text-[0.79rem] md:text-sm lg:text-sm '>
@@ -76,7 +76,7 @@ const CardPlantas = ({ id, title, description, imageUrl, category ,openModal }) 
           <h1 className='h-[2.5rem] text-white flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
             {title}
           </h1>
-          <h4 className='h-12 text-balance overflow-hidden line-clap-2 bg-green-700/20 p-2  text-[0.79rem] md:text-sm lg:text-sm rounded-b-md'>
+          <h4 className='h-12 text-balance overflow-hidden text-ellipsis line-clap-2 bg-green-700/20 p-2  text-[0.79rem] md:text-sm lg:text-sm rounded-b-md'>
             {truncatedDescription}
           </h4>
       </div>
