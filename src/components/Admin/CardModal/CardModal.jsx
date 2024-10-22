@@ -14,6 +14,9 @@ import { deleteItemFiltered } from '../../../redux/filterSilce';
 const CardModal = ({ isOpen, onClose, content }) => {
 
     const token = useSelector((state) => state.admin.token);
+    const [responseMessage, setResponseMessage] = useState('');
+    const [isMessageVisible, setIsMessageVisible] = useState(false);
+
 
 
 
@@ -89,67 +92,89 @@ const CardModal = ({ isOpen, onClose, content }) => {
           reader.onloadend = () => {
             setPreviewUrl(reader.result);
           };
-          //console.log(file)
           reader.readAsDataURL(file);
         }
       };
 
       const handleSave = async () => {
-
         const validationErrors = validateModal(newValues);
         if (Object.keys(validationErrors).length > 0) {
           setErrors(validationErrors);
           return;
         }
+        
         const formData = new FormData();
         formData.append('id', newValues.id);
         formData.append('title', newValues.title);
         formData.append('description', newValues.description);
         formData.append('category', newValues.category);
         formData.append('altura', newValues.altura);
-        formData.append('20', newValues.base);
+        formData.append('base', newValues.base); // Cambiado '20' por 'base'
         formData.append('boca', newValues.boca);
         formData.append('capacidad', newValues.capacidad);
         formData.append('peso', newValues.peso);
         formData.append('largo', newValues.largo);
-        formData.append('oldImageUrl', newValues.imageUrl)
+        formData.append('oldImageUrl', newValues.imageUrl);
+      
         if (imageFile) {
           formData.append('image', imageFile);
         }
-    
-        // console.log('Saving new values:', newValues);
-        // console.log('Saving file:', imageFile);
-        const fetchCategory = newValues.category
-        const data = await fetchUpdate(formData, token, fetchCategory);
-         if (data) {
-        const datosPosts = await fetchCatalogo();
-        dispatch(addCatalogo(datosPosts));
-        onClose();
+      
+        const fetchCategory = newValues.category;
+        try {
+          const data = await fetchUpdate(formData, token, fetchCategory);
+          console.log(data)
+          // Manejar la respuesta
+          if (data.success) {
+            const datosPosts = await fetchCatalogo();
+            dispatch(addCatalogo(datosPosts));
+            setResponseMessage('Datos guardados exitosamente.');
+            setIsMessageVisible(true);
+            setImageFile(null);
+            setTimeout(() => {
+              onClose();
+            }, 1000);
 
-         } else {
-             console.error('Error saving data:', data);
-         }
+          } else if(data.errorMessage){
+            setResponseMessage(data.errorMessage);
+            setIsMessageVisible(true);
+          }
+          
+        } catch (error) {
+          setResponseMessage(error.message);
+          setIsMessageVisible(true);
+        } finally {
+          // Ocultar el mensaje después de 3 segundos
+          setTimeout(() => {
+            setIsMessageVisible(false);
+            setResponseMessage(''); // Limpiar el mensaje
+          }, 1000);
+        }
+      
         setErrors({});
-        onClose(); 
       };
 
-    if (!isOpen) return null; 
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white text-black w-[20rem] md:w-[80%] h-fit  mx-2 p-4 rounded-lg shadow-lg relative max-w-lg ">
-        <button onClick={onClose} className="absolute top-0 right-0 mt-2 mr-2 text-black">
-          Close
-        </button>
-
-        <PlantModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
-        <MacetaModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
-        <MaceteroModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete}  handleFileChange={handleFileChange} handleSave={handleSave}  handleChange={handleChange}/>
-        
-
-
+      if (!isOpen) return null; 
+      return (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white text-black w-[20rem] md:w-[80%] h-fit mx-2 p-4 rounded-lg shadow-lg relative max-w-lg">
+            <button onClick={onClose} className="absolute top-0 right-0 mt-2 mr-2 text-black">
+              Close
+            </button>
       
-      </div>
-    </div>
+            {isMessageVisible && (
+              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+                <div className="bg-green-500/80 text-white font-bold p-4 rounded shadow-lg text-center max-w-md mx-auto">
+                  {responseMessage}
+                </div>
+              </div>
+            )}
+      
+            <PlantModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+            <MacetaModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+            <MaceteroModal errors={errors} content={content} newValues={newValues} handleDelete={handleDelete} handleFileChange={handleFileChange} handleSave={handleSave} handleChange={handleChange}/>
+          </div>
+        </div>
   );
 };
 
