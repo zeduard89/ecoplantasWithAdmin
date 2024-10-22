@@ -17,12 +17,11 @@ const Catalogo = () => {
   const catalogo = useSelector((state) => state.catalogo);
   const [selectedImage, setSelectedImage] = useState(null);
 
-
 //----------------------Carga de imagenes--------------------------------
   const fetchPosts = useCallback(async () => {
     try {
       const datosPosts = await fetchCatalogo();
-      if (datosPosts.macetas.length !== catalogo.macetas.length || datosPosts.plantas.length !== catalogo.plantas.length){
+      if (datosPosts.macetas.length !== catalogo.macetas.length || datosPosts.plantas.length !== catalogo.plantas.length || datosPosts.maceteros.length !== catalogo.maceteros.length){
         dispatch(reset());
         dispatch(addCatalogo(datosPosts));
       } 

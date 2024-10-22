@@ -18,7 +18,6 @@ const fetchCatalogo = async () => {
     const macetas = data.filterArray.filter(element => element.category === 'macetas')
     const maceteros = data.filterArray.filter(element => element.category === 'maceteros')
     const emptyCatalogo = data.emptyCatalogo
-
     if (data) {
       return {plantas,macetas,maceteros, emptyCatalogo};
     } else {

@@ -20,7 +20,7 @@ export const catalogoSlice = createSlice({
             const { macetas, plantas, maceteros, emptyCatalogo } = action.payload;
             state.macetas = macetas || [];
             state.plantas = plantas || []; 
-            state.maceteros = maceteros || [];   
+            state.maceteros = maceteros || []; 
             const maceteros20 = maceteros?.filter(macetero => {
                 return macetero.base.includes('20');
               });

@@ -25,6 +25,10 @@ const CardPlantas = ({ id, title, description, imageUrl, category ,openModal }) 
     return null;
   }
 
+  const truncatedDescription = description.length > 40
+  ? description.slice(0, 50) + ' ...'
+  : description;
+
   return (
     <div onClick={openModal} className='relative text-center rounded-md p-7 h-[25rem] w-[15rem] md:w-[18rem] lg:w-[18rem]'>
       {!isAdminPage && (
@@ -51,21 +55,22 @@ const CardPlantas = ({ id, title, description, imageUrl, category ,openModal }) 
           >
             -
           </button>
-          <h1 className='h-[2.5rem] rounded-b-md text-white flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
-                {title}
-          </h1>
+          
         </>
       )}
-      {isAdminPage && (
+      
         <>
           <h1 className='h-[2.5rem] text-white flex items-center justify-center bg-green-700 text-sm md:text-lg lg:text-lg xl:text-lg  font-bold'>
             {title}
           </h1>
-          <h4 className='h-[30%] bg-green-700/20 p-2 rounded-b-md text-[0.79rem] md:text-sm lg:text-sm overflow-hidden text-ellipsis'>
-            {description}
+          <h4 className='h-12 text-balance overflow-hidden line-clap-2 bg-green-700/20 p-2  text-[0.79rem] md:text-sm lg:text-sm '>
+            {truncatedDescription}
           </h4>
+          <button className='h-10 w-full pb-2 text-balance overflow-hidden font-bold bg-green-700/20  rounded-b-md text-[0.79rem] md:text-sm lg:text-sm '>
+            Leer mas
+          </button>
         </>
-      )}
+      
     </div>
   );
 };

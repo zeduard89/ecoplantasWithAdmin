@@ -11,6 +11,9 @@ const PlantModal = ({successMessage,dashBoardKey,content,errors = {}, newValues,
             <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
           )} 
           </div>
+            {!dashBoardKey && 
+              <label className=''>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
+              }  
           <label className='flex items-center pt-2'>Titulo:
               <input
               type="text"
@@ -32,7 +35,6 @@ const PlantModal = ({successMessage,dashBoardKey,content,errors = {}, newValues,
               rows="4"
               />
           </label> 
-          <label>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
           <input
           type="file"
           onChange={handleFileChange}

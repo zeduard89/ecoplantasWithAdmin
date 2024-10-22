@@ -11,17 +11,20 @@ const MacetaModal = ({successMessage,dashBoardKey, errors = {} ,content, newValu
                     <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
                  )} 
             </div>
-          <label className='h-[0.5rem] m-3  flex items-center pt-2'>Titulo:
-              <input
-              type="text"
-              name="title"
-              value={newValues.title}
-              onChange={handleChange}
-              placeholder={newValues.title}
-              className="h-[1.5rem] md:h-[1.2rem] md:w-[43%] w-[49%] p-2 md:ml-9 m-2 border border-gray-300 rounded"
-              /> 
-          </label>
-          <label className='h-[5rem] md:h-[7rem] flex items-center'>Descripcion:
+              {!dashBoardKey && 
+                  <label className='mt-3'>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
+              }  
+            <label className='ml-3 h-[1rem] my-3 w-[18rem]  flex items-center pt-2'>Titulo:
+                <input
+                type="text"
+                name="title"
+                value={newValues.title}
+                onChange={handleChange}
+                placeholder={newValues.title}
+                className="h-[1.8rem] md:w-[43%] w-[49%] p-2 md:ml-5 m-2 border border-gray-300 rounded"
+                /> 
+            </label>
+          {/* <label className='h-[5rem] md:h-[7rem] flex items-center'>Descripcion:
               <textarea
               name="description"
               value={newValues.description}
@@ -30,9 +33,8 @@ const MacetaModal = ({successMessage,dashBoardKey, errors = {} ,content, newValu
               className="h-[4rem] md:h-[5rem] w-[43%]  p-2 ml-1 border border-gray-300 rounded"
               rows="4"
               />
-          </label> 
-          <div className='grid grid-cols-2'>
-            <label>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
+          </label>  */}
+          <div className='grid grid-cols-2 ml-3'>
             <label>Base: 
                 <input
                 type="text"
@@ -60,7 +62,7 @@ const MacetaModal = ({successMessage,dashBoardKey, errors = {} ,content, newValu
                 value={newValues.altura}
                 onChange={handleChange}
                 placeholder={newValues.altura}
-                className="md:w-[50%] w-[50%] mt-2 p-2 ml-1 md:ml-6 border border-gray-300 rounded text-center"
+                className="md:w-[50%] w-[50%] mt-2 p-2 ml-1 md:ml-5 border border-gray-300 rounded text-center"
                 />
             </label>
             <label>Peso: 

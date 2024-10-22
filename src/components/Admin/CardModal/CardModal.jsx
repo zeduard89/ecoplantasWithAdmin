@@ -156,7 +156,7 @@ const CardModal = ({ isOpen, onClose, content }) => {
       if (!isOpen) return null; 
       return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white text-black w-[20rem] md:w-[80%] h-fit mx-2 p-4 rounded-lg shadow-lg relative max-w-lg">
+          <div className="bg-white  text-black w-[20rem] md:w-[80%] h-fit mx-2 p-4 rounded-lg shadow-lg relative max-w-lg">
             <button onClick={onClose} className="absolute top-0 right-0 mt-2 mr-2 text-black">
               Close
             </button>

@@ -11,6 +11,9 @@ const MaceteroModal = ({successMessage,dashBoardKey, errors = {}, content, newVa
               <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
             )} 
           </div>
+            {!dashBoardKey &&
+              <label>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
+            } 
           <label className='flex items-center pt-2'>Titulo:
               <input
               type="text"
@@ -18,10 +21,10 @@ const MaceteroModal = ({successMessage,dashBoardKey, errors = {}, content, newVa
               value={newValues.title}
               onChange={handleChange}
               placeholder={newValues.title}
-              className="w-[75%] md:w-[80%] h-7 mt-2 p-2 ml-12 border border-gray-300 rounded"
+              className="w-[50%] md:w-[80%] h-7 mt-2 p-2 ml-2 border border-gray-300 rounded"
               /> 
           </label>
-          <label className='flex items-center pt-2'>Descripcion:
+          {/* <label className='flex items-center pt-2'>Descripcion:
               <textarea
               name="description"
               value={newValues.description}
@@ -30,8 +33,7 @@ const MaceteroModal = ({successMessage,dashBoardKey, errors = {}, content, newVa
               className="h-[4rem]  w-[83%] mt-2 md:mt-0 p-2 ml-1 border border-gray-300 rounded"
               rows="4"
               />
-          </label>
-            <label>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
+          </label> */}
           <div className='grid grid-cols-2'>
             <label>
                 Base:

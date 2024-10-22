@@ -34,7 +34,7 @@ const CardMaceteros = ({maceteros , maceteroType }) => {
 
     return (
 
-    <div className='relative text-center rounded-md p-7 '>
+    <div className='relative text-center rounded-md p-7 mx-[4rem] '>
         
         <div className='absolute z-50 top-10 right-10 font-bold bg-green-700/80 border-2 border-gray-500 w-7 h-7 rounded flex items-center justify-center'>
             {base.includes('20')?countMaceteros20:countMaceteros30}
