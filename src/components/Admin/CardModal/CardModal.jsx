@@ -123,7 +123,6 @@ const CardModal = ({ isOpen, onClose, content }) => {
         const fetchCategory = newValues.category;
         try {
           const data = await fetchUpdate(formData, token, fetchCategory);
-          console.log(data)
           // Manejar la respuesta
           if (data.success) {
             const datosPosts = await fetchCatalogo();
