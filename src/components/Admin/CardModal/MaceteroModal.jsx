@@ -7,13 +7,15 @@ const MaceteroModal = ({successMessage,dashBoardKey, errors = {}, content, newVa
           <div className='flex flex-col text-xs'>
           <div className='flex flex-row justify-center items-center'>
             <img src={content.imageUrl} alt={content.imageUrl} className="w-[10rem] rounded-md" />
-            {errors.title && (
-              <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
-            )} 
+             
           </div>
-            {!dashBoardKey &&
-              <label>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
-            } 
+          <div className='flex'>
+            {!dashBoardKey && 
+              <label className=''>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
+              }{errors.title && (
+            <p className='text-red-600 text-center text-sm ml-12'>{errors.title}</p>
+          )}   
+          </div> 
           <label className='flex items-center pt-2'>Titulo:
               <input
               type="text"

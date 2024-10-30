@@ -100,6 +100,9 @@ const CardModal = ({ isOpen, onClose, content }) => {
         const validationErrors = validateModal(newValues);
         if (Object.keys(validationErrors).length > 0) {
           setErrors(validationErrors);
+          setTimeout(() => {
+            setErrors({});
+          }, 1000);
           return;
         }
         

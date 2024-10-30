@@ -7,13 +7,17 @@ const PlantModal = ({successMessage,dashBoardKey,content,errors = {}, newValues,
       <div className='flex flex-col'>
           <div className='flex flex-row justify-center items-center'>
           <img src={content.imageUrl} alt={content.imageUrl} className="w-[9rem] h-auto rounded-md" />
-          {errors.title && (
-            <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
-          )} 
+          
           </div>
+          <div className='flex'>
             {!dashBoardKey && 
               <label className=''>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
-              }  
+              }
+            {errors.title && (
+              <p className='text-red-600 text-center text-sm ml-12'>{errors.title}</p>
+            )}
+             
+          </div>
           <label className='flex items-center pt-2'>Titulo:
               <input
               type="text"

@@ -7,13 +7,15 @@ const MacetaModal = ({successMessage,dashBoardKey, errors = {} ,content, newValu
           <div className='flex flex-col text-xs'>
             <div className='flex flex-row justify-center items-center'>
                 <img src={content.imageUrl} alt={content.imageUrl} className="md:w-[10rem] w-[6rem] h-auto rounded-md" />
-                {errors.title && (
-                    <p className='text-red-600 text-sm ml-12'>{errors.title}</p>
-                 )} 
+                
             </div>
-              {!dashBoardKey && 
-                  <label className='mt-3'>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
-              }  
+            <div className='flex'>
+            {!dashBoardKey && 
+              <label className=''>  Categoria: {newValues.category.charAt(0).toUpperCase() + newValues.category.slice(1)} </label>
+              }{errors.title && (
+            <p className='text-red-600 text-center text-sm ml-12'>{errors.title}</p>
+          )}   
+          </div>  
             <label className='ml-3 h-[1rem] my-3 w-[18rem]  flex items-center pt-2'>Titulo:
                 <input
                 type="text"
