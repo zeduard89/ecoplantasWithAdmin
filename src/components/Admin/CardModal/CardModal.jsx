@@ -64,11 +64,18 @@ const CardModal = ({ isOpen, onClose, content }) => {
 
     const handleDelete = async() =>{
       try {
-        await fetchDelete(content,token);
-        dispatch(deleteItem({ category: content.category, id: content.id }));
-        dispatch(deleteItemFiltered(content.id))
-        onClose(); 
+        const data = await fetchDelete(content,token);
+        console.log(data)
+        setResponseMessage(data.message);
+            setIsMessageVisible(true);
         
+        setTimeout(() => {
+          dispatch(deleteItem({ category: content.category, id: content.id }));
+          dispatch(deleteItemFiltered(content.id))
+          onClose(); 
+          setIsMessageVisible(false);
+         }, 1000);
+
       } catch (error) {
         
         console.error('Error Borrando:', data);
