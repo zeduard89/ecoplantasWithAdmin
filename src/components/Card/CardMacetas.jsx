@@ -58,15 +58,15 @@ const CardMacetas = ({id, title, altura,base,boca,capacidad,imageUrl,peso,descri
         </>
       )}
 
-          <h1 className='h-[2.5rem] text-white place-content-center bg-green-700 text-lg font-bold '>{title}</h1>
+          <h1 className='h-[2.5rem] rounded-b-md text-white place-content-center bg-green-700 text-lg font-bold '>{title}</h1>
           {/* H3: Limited to 142 chars */}
-          <div className=' bg-green-700/20 rounded-b-md text-[0.79rem] md:text-sm lg:text-sm overflow-hidden text-ellipsis text-left p-2'>
+          {/* <div className=' bg-green-700/20 rounded-b-md text-[0.79rem] md:text-sm lg:text-sm overflow-hidden text-ellipsis text-left p-2'>
               <p>Boca: {boca} mm</p>
               <p>Base: {base} mm</p>
               <p>Altura: {altura} mm</p>
               <p>Peso: {peso} mm</p>
               <p>Capacidad: {capacidad} mm</p>
-          </div>
+          </div> */}
         
         
     </div>
