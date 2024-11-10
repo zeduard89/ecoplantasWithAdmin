@@ -22,7 +22,7 @@ const Home = ({onScroll}) => {
         <div className='h-[40rem]'>
           <Carrousel image={imagesCarrousel}/>
         </div>
-        <div className='bg-black/[.4] z-40 h-[10rem] w-full mt-[15rem] absolute inset-0 flex flex-col items-center justify-center  text-white'>
+        <div className='bg-black/[.4] z-40 h-[15rem] sm:h-[10rem] w-full mt-[15rem] absolute inset-0 flex flex-col items-center justify-center  text-white'>
           <h1 className='text-center text-white text-7xl font-bold mb-2'>Eco Plantas</h1>
           <h2 className='text-center text-white text-3xl'>Alquiler y Venta de plantas para eventos.</h2>
         </div>
