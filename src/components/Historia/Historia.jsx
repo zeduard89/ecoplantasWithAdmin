@@ -16,7 +16,7 @@ const Historia = () => {
   return (
     <div className="lg:w-[90%] w-[90%] mx-auto lg:mx-auto">
       <div className="mt-[8rem] mx-[1rem] grid grid-cols-1 lg:grid-cols-2 text-center">
-        <div className="w-full">
+        <div className="w-full lg:w-[70%]">
           <Card image={image.team} shadowOn={true} />
         </div>
         <div className="content-center">
