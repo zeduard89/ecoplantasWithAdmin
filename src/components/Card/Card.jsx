@@ -9,7 +9,7 @@ const Card = ({ image }) => {
 
         {location.pathname !== '/historia' ? (
           <div className='mb-4 ml-2 flex justify-evenly'>
-            <img src={image} alt="Imagen" className='rounded-md h-[20rem]  md:h-[15rem] md:w-[20rem]  lg:h-[20rem]' />
+            <img src={image} alt="Imagen" className='rounded-md h-[20rem] w-[20rem]  md:h-[15rem] md:w-[20rem]  lg:h-[20rem]' />
           </div>
         ) : (
           <div className='mb-4 flex justify-evenly'>
