@@ -14,7 +14,7 @@ import { addCatalogo, reset } from '../../redux/catalogoSlice';
 const Catalogo = () => {
   //get catalogo from  wordpress y update redux
   const dispatch = useDispatch();
-  const catalogo = useSelector((state) => state.catalogo);
+  const catalogo = useSelector((state) => state.catalogo || { plantas: [], macetas: [], maceteros: [] });
   const [selectedImage, setSelectedImage] = useState(null);
 
 //----------------------Carga de imagenes--------------------------------
@@ -54,9 +54,9 @@ const Catalogo = () => {
             <h1 className=" text-3xl md:text-4xl lg:text-4xl text-gray-700 font-bold">
               PLANTAS
             </h1>
-            {catalogo.plantas.length === 0 && <div>No hay Plantas disponibles</div>}
+            {catalogo?.plantas?.length === 0 && <div>No hay Plantas disponibles</div>}
             <div className="flex flex-row justify-center flex-wrap">
-              {catalogo.plantas.map((planta, index) => (
+            {catalogo?.plantas?.map((planta, index) => (
                 <div key={index}>
                   <CardPlantas {...planta} />
                 </div>
@@ -69,9 +69,9 @@ const Catalogo = () => {
             <h1 className="mb-6 mt-6 text-3xl md:text-4xl lg:text-4xl text-gray-700 font-bold">
               MACETAS
             </h1>
-            {catalogo.macetas.length === 0 && <div>No hay Macetas disponibles</div>}
+            {catalogo?.macetas?.length === 0 && <div>No hay Macetas disponibles</div>}
             <div className="flex flex-row justify-center flex-wrap">
-              {catalogo.macetas.map((maceta, index) => (
+            {catalogo?.macetas?.map((maceta, index) => (
                 <div key={index}>
                   <CardMacetas {...maceta} />
                 </div>
@@ -98,8 +98,9 @@ const Catalogo = () => {
             <h1 className="mb-6 mt-6  text-3xl md:text-4xl lg:text-4xl text-gray-700 font-bold">
               MACETEROS
             </h1>
-            {catalogo.maceteros.length === 0? <div>No hay Maceteros disponibles</div>
-            :(
+            {catalogo?.maceteros?.length === 0 ? (
+            <div>No hay Maceteros disponibles</div>
+            ) : (
             <div className="lg:grid lg:grid-cols-2"> 
               <CardMaceteros maceteros={catalogo.arrayMaceteros20} maceteroType={'20'} />
               <CardMaceteros maceteros={catalogo.arrayMaceteros30} maceteroType={'30'} />
